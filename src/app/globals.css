@@ -1,0 +1,219 @@
+@import "tailwindcss";
+
+@utility line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+@utility line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+:root {
+  /* Dark Academia Color Palette - Rich Greens & Earth Tones background : #0d1117*/
+  --background: #202c23;
+  --foreground: #f4f1e8;
+  --card-bg: #1c2128;
+  --card-border: #30363d;
+  --accent-green: #376540;
+  --accent-dark-green: #0d2a14;
+  --accent-forest-green: #0d281b;
+  --accent-sage-green: #71806b;
+  --accent-orange: #845736;
+  --accent-brown: #8b4513;
+  --accent-warm-grey: #6e7681;
+  --text-muted: #8b949e;
+  --text-accent: #e6edf3;
+  
+  /* Font Variables */
+  --font-display: var(--font-playfair);
+  --font-heading: var(--font-crimson);
+  --font-body: var(--font-lora);
+  --font-accent: var(--font-merriweather);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card-bg: var(--card-bg);
+  --color-card-border: var(--card-border);
+  --color-accent-green: var(--accent-green);
+  --color-accent-dark-green: var(--accent-dark-green);
+  --color-accent-forest-green: var(--accent-forest-green);
+  --color-accent-sage-green: var(--accent-sage-green);
+  --color-accent-orange: var(--accent-orange);
+  --color-accent-brown: var(--accent-brown);
+  --color-accent-warm-grey: var(--accent-warm-grey);
+  --color-text-muted: var(--text-muted);
+  --color-text-accent: var(--text-accent);
+  --font-display: var(--font-display);
+  --font-heading: var(--font-heading);
+  --font-body: var(--font-body);
+  --font-accent: var(--font-accent);
+}
+
+body {
+  background: #202c23;
+  color: #f4f1e8;
+  font-family: var(--font-lora), serif;
+  line-height: 1.6;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0d281b;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #376540;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #0d2a14;
+}
+
+/* Typography Classes */
+.font-display {
+  font-family: var(--font-playfair), serif;
+}
+
+.font-heading {
+  font-family: var(--font-crimson), serif;
+}
+
+.font-body {
+  font-family: var(--font-lora), serif;
+}
+
+.font-accent {
+  font-family: var(--font-merriweather), serif;
+}
+
+/* Custom focus styles */
+.focus-green:focus {
+  outline: 2px solid #376540;
+  outline-offset: 2px;
+}
+
+/* Subtle texture overlay */
+.texture-overlay {
+  background-image: 
+    radial-gradient(circle at 1px 1px, rgba(55, 101, 64, 0.1) 1px, transparent 0);
+  background-size: 20px 20px;
+}
+
+/* Dark Academia Custom Classes - Rich Greens & Earth Tones */
+.bg-academia-dark {
+  background-color: #0e1310;
+}
+
+.bg-academia-card {
+  background-color: #202c23;
+}
+
+.bg-academia-green {
+  background-color: #233025;
+}
+
+.bg-academia-dark-green {
+  background-color: #0d2a14;
+}
+
+.bg-academia-forest-green {
+  background-color: #0d281b;
+}
+
+.bg-academia-dark-red {
+  background-color: #2f0f0f;
+}
+
+.bg-academia-orange {
+  background-color: #845736;
+}
+
+.bg-academia-brown {
+  background-color: #8b4513;
+}
+
+.bg-academia-warm-grey {
+  background-color: #6e7681;
+}
+
+.text-academia-light {
+  color: #f4f1e8;
+}
+
+.text-academia-muted {
+  color: #8b949e;
+}
+
+.text-academia-blood-red {
+  color: #491616;
+}
+
+.text-academia-dark-blue {
+  color: #202870;
+}
+
+.text-academia-orange {
+  color: #845736;
+}
+
+.text-academia-brown {
+  color: #8b4513;
+}
+
+.text-academia-green {
+  color: #376540;
+}
+
+.text-academia-dark-green {
+  color: #0d2a14;
+}
+
+.text-academia-forest-green {
+  color: #0d281b;
+}
+
+.text-academia-warm-grey {
+  color: #6e7681;
+}
+
+
+.border-academia {
+  border-color: #30363d;
+}
+
+.border-academia-green {
+  border-color: #363e37;
+}
+
+.border-academia-dark-green {
+  border-color: #0d2a14;
+}
+
+.border-academia-forest-green {
+  border-color: #0d281b;
+}
+
+.border-academia-orange {
+  border-color: #845736;
+}
+
+.border-academia-brown {
+  border-color: #8b4513;
+}
+
+.border-academia-blood-red {
+  border-color: #3c1818;
+}
