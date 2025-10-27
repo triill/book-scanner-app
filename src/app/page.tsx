@@ -6,7 +6,7 @@ import { useBooks } from '@/hooks/useBooks';
 import AddBookForm from '@/components/AddBookForm';
 import EditBookForm from '@/components/EditBookForm';
 import BookCard from '@/components/BookCard';
-import { BookOpen, Plus, Star, Filter, BarChart3 } from 'lucide-react';
+import { BookOpen, Plus, Star, Filter } from 'lucide-react';
 
 export default function Home() {
   const { 
@@ -23,7 +23,6 @@ export default function Home() {
   const [showEditForm, setShowEditForm] = useState(false);
   const [editingBook, setEditingBook] = useState<Book | null>(null);
   const [filter, setFilter] = useState<'all' | 'five-star' | BookGenre | 'unread' | 'read'>('all');
-  const [showStats, setShowStats] = useState(false);
   const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {

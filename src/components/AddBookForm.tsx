@@ -256,7 +256,7 @@ export default function AddBookForm({ onAddBook, onCancel }: AddBookFormProps) {
                 placeholder="Paste image URL from Amazon or Goodreads"
               />
               <p className="text-xs text-academia-muted mt-2 font-body">
-                💡 Right-click on a book cover → "Copy Image Address"
+                💡 Right-click on a book cover → &quot;Copy Image Address&quot;
               </p>
             </div>
 
