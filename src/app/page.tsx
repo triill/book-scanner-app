@@ -6,7 +6,7 @@ import { useBooks } from '@/hooks/useBooks';
 import AddBookForm from '@/components/AddBookForm';
 import EditBookForm from '@/components/EditBookForm';
 import BookCard from '@/components/BookCard';
-import { BookOpen, Plus, Star, Filter } from 'lucide-react';
+import { BookOpen, Plus, Star, Filter, X } from 'lucide-react';
 
 export default function Home() {
   const { 
@@ -24,6 +24,7 @@ export default function Home() {
   const [editingBook, setEditingBook] = useState<Book | null>(null);
   const [filter, setFilter] = useState<'all' | 'five-star' | BookGenre | 'unread' | 'read'>('all');
   const [isClient, setIsClient] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     setIsClient(true);
@@ -31,9 +32,15 @@ export default function Home() {
 
   const stats = getStats();
 
-  const handleAddBook = (bookData: Omit<Book, 'id' | 'dateAdded'>) => {
-    addBook(bookData);
-    setShowAddForm(false);
+  const handleAddBook = async (bookData: Omit<Book, 'id' | 'dateAdded'>) => {
+    try {
+      setError(null);
+      await addBook(bookData);
+      setShowAddForm(false);
+    } catch (error) {
+      console.error('Failed to add book:', error);
+      setError(error instanceof Error ? error.message : 'Failed to add book');
+    }
   };
 
   const handleEditBook = (book: Book) => {
@@ -41,10 +48,16 @@ export default function Home() {
     setShowEditForm(true);
   };
 
-  const handleUpdateBook = (bookId: string, updates: Partial<Book>) => {
-    updateBook(bookId, updates);
-    setShowEditForm(false);
-    setEditingBook(null);
+  const handleUpdateBook = async (bookId: string, updates: Partial<Book>) => {
+    try {
+      setError(null);
+      await updateBook(bookId, updates);
+      setShowEditForm(false);
+      setEditingBook(null);
+    } catch (error) {
+      console.error('Failed to update book:', error);
+      setError(error instanceof Error ? error.message : 'Failed to update book');
+    }
   };
 
 
@@ -70,6 +83,21 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-academia-dark texture-overlay">
       <div className="container mx-auto px-4 py-8">
+        {/* Error Display */}
+        {error && (
+          <div className="mb-6 p-4 bg-red-900/20 border border-red-500/50 rounded-xl">
+            <div className="flex items-center justify-between">
+              <p className="text-red-400 font-body">{error}</p>
+              <button
+                onClick={() => setError(null)}
+                className="text-red-400 hover:text-red-300 transition-colors"
+              >
+                <X size={20} />
+              </button>
+            </div>
+          </div>
+        )}
+
         {/* Header */}
         <div className="text-center mb-12">
           <div className="flex items-center justify-center gap-4 mb-6">

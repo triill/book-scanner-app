@@ -27,10 +27,15 @@ export async function GET(request: NextRequest) {
     console.error('Error fetching books:', error);
     console.error('Error details:', error instanceof Error ? error.message : 'Unknown error');
     console.error('Stack trace:', error instanceof Error ? error.stack : 'No stack trace');
+    console.error('Database URL available:', !!process.env.DATABASE_URL);
+    console.error('Environment:', process.env.NODE_ENV);
+    
     return NextResponse.json(
       { 
         error: 'Failed to fetch books',
-        details: error instanceof Error ? error.message : 'Unknown error'
+        details: error instanceof Error ? error.message : 'Unknown error',
+        environment: process.env.NODE_ENV,
+        hasDatabaseUrl: !!process.env.DATABASE_URL
       },
       { status: 500 }
     );
@@ -87,10 +92,15 @@ export async function POST(request: NextRequest) {
     console.error('Error creating book:', error);
     console.error('Error details:', error instanceof Error ? error.message : 'Unknown error');
     console.error('Stack trace:', error instanceof Error ? error.stack : 'No stack trace');
+    console.error('Database URL available:', !!process.env.DATABASE_URL);
+    console.error('Environment:', process.env.NODE_ENV);
+    
     return NextResponse.json(
       { 
         error: 'Failed to create book',
-        details: error instanceof Error ? error.message : 'Unknown error'
+        details: error instanceof Error ? error.message : 'Unknown error',
+        environment: process.env.NODE_ENV,
+        hasDatabaseUrl: !!process.env.DATABASE_URL
       },
       { status: 500 }
     );
