@@ -107,6 +107,36 @@ export function useBooks() {
     return [...books].sort((a, b) => a.title.localeCompare(b.title));
   };
 
+  // Get books grouped by author (alphabetically by author, then by title within each author)
+  const getBooksGroupedByAuthor = () => {
+    const sortedBooks = [...books].sort((a, b) => {
+      // First sort by author
+      const authorA = a.authors[0] || '';
+      const authorB = b.authors[0] || '';
+      const authorComparison = authorA.localeCompare(authorB);
+      
+      // If authors are the same, sort by title
+      if (authorComparison === 0) {
+        return a.title.localeCompare(b.title);
+      }
+      
+      return authorComparison;
+    });
+    
+    return sortedBooks;
+  };
+
+  // Search books by title or author
+  const searchBooks = (query: string) => {
+    if (!query.trim()) return getBooksGroupedByAuthor();
+    
+    const lowercaseQuery = query.toLowerCase();
+    return getBooksGroupedByAuthor().filter(book => 
+      book.title.toLowerCase().includes(lowercaseQuery) ||
+      book.authors.some(author => author.toLowerCase().includes(lowercaseQuery))
+    );
+  };
+
   // Get books filtered by genre
   const getBooksByGenre = (genre: string) => {
     return getSortedBooks().filter(book => book.genre === genre);
@@ -138,7 +168,7 @@ export function useBooks() {
   };
 
   return {
-    books: getSortedBooks(),
+    books: getBooksGroupedByAuthor(),
     isLoading,
     error,
     addBook,
@@ -149,6 +179,8 @@ export function useBooks() {
     getFiveStarBooks,
     getBooksByStatus,
     getStats,
+    searchBooks,
+    getBooksGroupedByAuthor,
     refetch: fetchBooks,
   };
 }

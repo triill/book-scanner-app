@@ -6,23 +6,22 @@ import { useBooks } from '@/hooks/useBooks';
 import AddBookForm from '@/components/AddBookForm';
 import EditBookForm from '@/components/EditBookForm';
 import BookCard from '@/components/BookCard';
-import { BookOpen, Plus, Star, Filter, X } from 'lucide-react';
+import { BookOpen, Plus, Star, Filter, X, Search } from 'lucide-react';
 
 export default function Home() {
   const { 
     books, 
     addBook, 
     updateBook,
-    getBooksByGenre, 
-    getFiveStarBooks, 
-    getBooksByStatus,
-    getStats 
+    getStats,
+    searchBooks
   } = useBooks();
   
   const [showAddForm, setShowAddForm] = useState(false);
   const [showEditForm, setShowEditForm] = useState(false);
   const [editingBook, setEditingBook] = useState<Book | null>(null);
   const [filter, setFilter] = useState<'all' | 'five-star' | BookGenre | 'unread' | 'read'>('all');
+  const [searchQuery, setSearchQuery] = useState('');
   const [isClient, setIsClient] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -63,18 +62,26 @@ export default function Home() {
 
 
   const getFilteredBooks = () => {
+    let filteredBooks = books;
+    
+    // Apply search filter first
+    if (searchQuery.trim()) {
+      filteredBooks = searchBooks(searchQuery);
+    }
+    
+    // Then apply category filter
     switch (filter) {
       case 'five-star':
-        return getFiveStarBooks();
+        return filteredBooks.filter(book => book.rating === 5);
       case 'Romance':
       case 'Dark Romance':
       case 'Fantasy':
-        return getBooksByGenre(filter);
+        return filteredBooks.filter(book => book.genre === filter);
       case 'unread':
       case 'read':
-        return getBooksByStatus(filter);
+        return filteredBooks.filter(book => book.status === filter);
       default:
-        return books;
+        return filteredBooks;
     }
   };
 
@@ -140,6 +147,32 @@ export default function Home() {
           </div>
         </div>
 
+        {/* Search Bar */}
+        {books.length > 0 && (
+          <div className="mb-6">
+            <div className="relative max-w-md mx-auto">
+              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                <Search size={20} className="text-academia-muted" />
+              </div>
+              <input
+                type="text"
+                placeholder="Search by title or author..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="w-full pl-10 pr-4 py-3 bg-academia-card border border-academia rounded-xl text-academia-light placeholder-academia-muted focus:outline-none focus:border-academia-green focus:ring-2 focus:ring-academia-green/20 font-body"
+              />
+              {searchQuery && (
+                <button
+                  onClick={() => setSearchQuery('')}
+                  className="absolute inset-y-0 right-0 pr-3 flex items-center text-academia-muted hover:text-academia-light transition-colors"
+                >
+                  <X size={18} />
+                </button>
+              )}
+            </div>
+          </div>
+        )}
+
         {/* Controls */}
         <div className="mb-8">
           <div className="flex flex-col md:flex-row gap-4 items-start md:items-center justify-between">
@@ -187,17 +220,28 @@ export default function Home() {
         <div className="mb-6">
           <div className="flex items-center justify-between mb-6">
             <h2 className="text-3xl font-heading font-semibold text-academia-light">
-              {filter === 'all' ? 'All Volumes' : 
+              {searchQuery ? `Search Results for "${searchQuery}"` :
+               filter === 'all' ? 'All Volumes' : 
                filter === 'five-star' ? 'Masterpieces' :
                filter.charAt(0).toUpperCase() + filter.slice(1)} ({isClient ? filteredBooks.length : 0})
             </h2>
-            <button
-              onClick={() => setFilter('all')}
-              className={`flex items-center gap-3 px-5 py-2 text-academia-sage-green hover:text-academia-light hover:bg-academia-green/10 rounded-xl transition-all duration-300 border border-academia-green/30 font-heading font-medium ${filter !== 'five-star' ? 'opacity-0 pointer-events-none' : ''}`}
-            >
-              <BookOpen size={20} />
-              Back to All Volumes
-            </button>
+            {searchQuery ? (
+              <button
+                onClick={() => setSearchQuery('')}
+                className="flex items-center gap-3 px-5 py-2 text-academia-sage-green hover:text-academia-light hover:bg-academia-green/10 rounded-xl transition-all duration-300 border border-academia-green/30 font-heading font-medium"
+              >
+                <X size={20} />
+                Clear Search
+              </button>
+            ) : (
+              <button
+                onClick={() => setFilter('all')}
+                className={`flex items-center gap-3 px-5 py-2 text-academia-sage-green hover:text-academia-light hover:bg-academia-green/10 rounded-xl transition-all duration-300 border border-academia-green/30 font-heading font-medium ${filter !== 'five-star' ? 'opacity-0 pointer-events-none' : ''}`}
+              >
+                <BookOpen size={20} />
+                Back to All Volumes
+              </button>
+            )}
           </div>
 
           {!isClient ? (
@@ -247,14 +291,35 @@ export default function Home() {
               </button>
             </div>
           ) : (
-            <div className="flex flex-wrap gap-4">
-              {filteredBooks.map((book) => (
-                <BookCard
-                  key={book.id}
-                  book={book}
-                  onEdit={handleEditBook}
-                />
-              ))}
+            <div className="space-y-8">
+              {(() => {
+                // Group books by author
+                const groupedBooks = filteredBooks.reduce((groups, book) => {
+                  const author = book.authors[0] || 'Unknown Author';
+                  if (!groups[author]) {
+                    groups[author] = [];
+                  }
+                  groups[author].push(book);
+                  return groups;
+                }, {} as Record<string, Book[]>);
+
+                return Object.entries(groupedBooks).map(([author, authorBooks]) => (
+                  <div key={author} className="space-y-4">
+                    <h3 className="text-xl font-heading font-semibold text-academia-sage-green border-b border-academia-green/30 pb-2">
+                      {author}
+                    </h3>
+                    <div className="flex flex-wrap gap-4">
+                      {authorBooks.map((book) => (
+                        <BookCard
+                          key={book.id}
+                          book={book}
+                          onEdit={handleEditBook}
+                        />
+                      ))}
+                    </div>
+                  </div>
+                ));
+              })()}
             </div>
           )}
         </div>
