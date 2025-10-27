@@ -59,7 +59,7 @@ export default function AddBookForm({ onAddBook, onCancel }: AddBookFormProps) {
         setIsLoadingCover(false);
       };
       img.src = coverUrl;
-    } catch (error) {
+    } catch {
       setBookCover(null);
       setIsLoadingCover(false);
     }

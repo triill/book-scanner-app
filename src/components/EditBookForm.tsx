@@ -60,7 +60,7 @@ export default function EditBookForm({ book, onUpdateBook, onCancel }: EditBookF
         setIsLoadingCover(false);
       };
       img.src = coverUrl;
-    } catch (error) {
+    } catch {
       setBookCover(null);
       setIsLoadingCover(false);
     }
