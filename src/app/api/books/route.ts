@@ -9,7 +9,7 @@ export async function GET(request: NextRequest) {
     const status = searchParams.get('status');
     const rating = searchParams.get('rating');
 
-    const where: Record<string, any> = {};
+    const where: Record<string, string | number> = {};
     
     if (genre) where.genre = genre;
     if (status) where.status = status;
