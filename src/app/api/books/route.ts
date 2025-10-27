@@ -25,8 +25,13 @@ export async function GET(request: NextRequest) {
     return NextResponse.json(books);
   } catch (error) {
     console.error('Error fetching books:', error);
+    console.error('Error details:', error instanceof Error ? error.message : 'Unknown error');
+    console.error('Stack trace:', error instanceof Error ? error.stack : 'No stack trace');
     return NextResponse.json(
-      { error: 'Failed to fetch books' },
+      { 
+        error: 'Failed to fetch books',
+        details: error instanceof Error ? error.message : 'Unknown error'
+      },
       { status: 500 }
     );
   }
@@ -80,8 +85,13 @@ export async function POST(request: NextRequest) {
     return NextResponse.json(book, { status: 201 });
   } catch (error) {
     console.error('Error creating book:', error);
+    console.error('Error details:', error instanceof Error ? error.message : 'Unknown error');
+    console.error('Stack trace:', error instanceof Error ? error.stack : 'No stack trace');
     return NextResponse.json(
-      { error: 'Failed to create book' },
+      { 
+        error: 'Failed to create book',
+        details: error instanceof Error ? error.message : 'Unknown error'
+      },
       { status: 500 }
     );
   }
