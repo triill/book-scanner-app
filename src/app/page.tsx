@@ -55,15 +55,9 @@ export default function Home() {
   };
 
   const handleUpdateBook = async (bookId: string, updates: Partial<Book>) => {
-    try {
-      setError(null);
-      await updateBook(bookId, updates);
-      setShowEditForm(false);
-      setEditingBook(null);
-    } catch (error) {
-      console.error('Failed to update book:', error);
-      setError(error instanceof Error ? error.message : 'Failed to update book');
-    }
+    await updateBook(bookId, updates);
+    setShowEditForm(false);
+    setEditingBook(null);
   };
 
 
@@ -131,7 +125,7 @@ export default function Home() {
         {/* Stats Section */}
         <div className="mb-8">
           <div className="flex items-center justify-between mb-6">
-            <h2 className="text-2xl font-heading font-semibold text-academia-light">Library Statistics</h2>
+            <h2 className="text-3xl font-signature text-academia-light">Library Statistics</h2>
            
           </div>
           
@@ -228,7 +222,7 @@ export default function Home() {
         {/* Books Section */}
         <div className="mb-6">
           <div className="flex items-center justify-between mb-6">
-            <h2 className="text-3xl font-heading font-semibold text-academia-light">
+            <h2 className="text-4xl font-signature text-academia-light">
               {searchQuery ? `Search Results for "${searchQuery}"` :
                filter === 'all' ? 'All Volumes' : 
                filter === 'five-star' ? 'Masterpieces' :
@@ -258,7 +252,7 @@ export default function Home() {
               <div className="p-4 rounded-full bg-academia-sage-green/20 border border-academia-sage-green/30 w-fit mx-auto mb-6">
                 <BookOpen size={72} className="text-academia-sage-green" />
               </div>
-              <h3 className="text-2xl font-heading font-semibold text-academia-light mb-4">
+              <h3 className="text-3xl font-signature text-academia-light mb-4">
                 Loading...
               </h3>
             </div>
@@ -267,7 +261,7 @@ export default function Home() {
               <div className="p-4 rounded-full bg-academia-sage-green/20 border border-academia-sage-green/30 w-fit mx-auto mb-6">
                 <BookOpen size={72} className="text-academia-sage-green" />
               </div>
-              <h3 className="text-2xl font-heading font-semibold text-academia-light mb-4">
+              <h3 className="text-3xl font-signature text-academia-light mb-4">
                 Your Library Awaits
               </h3>
               <p className="text-academia-muted mb-8 text-lg font-body max-w-md mx-auto">
@@ -286,7 +280,7 @@ export default function Home() {
               <div className="p-4 rounded-full bg-academia-orange/20 border border-academia-green/30 w-fit mx-auto mb-6">
                 <Filter size={72} className="text-academia-sage-green" />
               </div>
-              <h3 className="text-2xl font-heading font-semibold text-academia-light mb-4">
+              <h3 className="text-3xl font-signature text-academia-light mb-4">
                 No Volumes Found
               </h3>
               <p className="text-academia-muted mb-8 text-lg font-body max-w-md mx-auto">
@@ -314,7 +308,7 @@ export default function Home() {
 
                 return Object.entries(groupedBooks).map(([author, authorBooks]) => (
                   <div key={author} className="space-y-4">
-                    <h3 className="text-xl font-signature font-semibold text-academia-sage-green border-b border-academia-green/30 pb-2">
+                    <h3 className="text-3xl font-signature text-academia-sage-green border-b border-academia-green/30 pb-2">
                       {author}
                     </h3>
                     <div className="flex flex-wrap gap-4">

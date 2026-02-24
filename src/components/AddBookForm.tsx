@@ -141,7 +141,7 @@ export default function AddBookForm({ onAddBook, onCancel }: AddBookFormProps) {
     <div className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4 z-50">
       <div className="bg-academia-dark rounded-2xl shadow-2xl border border-academia max-w-2xl w-full max-h-[90vh] overflow-y-auto">
         <div className="flex items-center justify-between p-8 border-b border-academia">
-          <h2 className="text-3xl font-heading font-bold text-academia-light">Add New Volume</h2>
+          <h2 className="text-4xl font-signature text-academia-light">Add New Volume</h2>
           <button
             onClick={onCancel}
             className="text-academia-muted hover:text-academia-light transition-colors p-2 rounded-lg hover:bg-academia-green/10"
@@ -287,7 +287,7 @@ export default function AddBookForm({ onAddBook, onCancel }: AddBookFormProps) {
 
           {/* Optional Fields */}
           <div className="space-y-4">
-            <h3 className="text-xl font-heading font-semibold text-academia-light border-b border-academia pb-2">
+            <h3 className="text-2xl font-signature text-academia-light border-b border-academia pb-2">
               Additional Details
             </h3>
             

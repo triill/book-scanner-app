@@ -7,7 +7,7 @@ import Image from 'next/image';
 
 interface EditBookFormProps {
   book: Book;
-  onUpdateBook: (bookId: string, updates: Partial<Book>) => void;
+  onUpdateBook: (bookId: string, updates: Partial<Book>) => Promise<void>;
   onCancel: () => void;
 }
 
@@ -25,10 +25,11 @@ export default function EditBookForm({ book, onUpdateBook, onCancel }: EditBookF
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [bookCover, setBookCover] = useState<string | null>(book.imageUrl || null);
   const [manualImageUrl, setManualImageUrl] = useState(book.imageUrl || '');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   const handleInputChange = (field: string, value: string | number) => {
     setFormData(prev => ({ ...prev, [field]: value }));
-    // Clear error when user starts typing
     if (errors[field]) {
       setErrors(prev => ({ ...prev, [field]: '' }));
     }
@@ -37,7 +38,6 @@ export default function EditBookForm({ book, onUpdateBook, onCancel }: EditBookF
   const handleManualImageUrl = (url: string) => {
     setManualImageUrl(url);
     if (url.trim()) {
-      // Test if the image loads
       const img = document.createElement('img');
       img.onload = () => {
         setBookCover(url);
@@ -70,12 +70,13 @@ export default function EditBookForm({ book, onUpdateBook, onCancel }: EditBookF
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (!validateForm()) {
-      return;
-    }
+    if (!validateForm()) return;
+
+    setIsSubmitting(true);
+    setSubmitError(null);
 
     const authorsArray = formData.authors
       .split(',')
@@ -93,10 +94,15 @@ export default function EditBookForm({ book, onUpdateBook, onCancel }: EditBookF
       format: formData.format
     };
 
-    onUpdateBook(book.id, updates);
+    try {
+      await onUpdateBook(book.id, updates);
+    } catch (err) {
+      setSubmitError(err instanceof Error ? err.message : 'Failed to update book');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
-  /** Rating scale: 1 (star), 1.5 (dot), 2 (star), 2.5 (dot), ... 5 (star) */
   const RATING_VALUES = [1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5] as const;
 
   const renderStars = () => {
@@ -142,7 +148,7 @@ export default function EditBookForm({ book, onUpdateBook, onCancel }: EditBookF
     <div className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4 z-50">
       <div className="bg-academia-dark rounded-2xl shadow-2xl border border-academia max-w-2xl w-full max-h-[90vh] overflow-y-auto">
         <div className="flex items-center justify-between p-8 border-b border-academia">
-          <h2 className="text-3xl font-heading font-bold text-academia-light">Edit Volume</h2>
+          <h2 className="text-4xl font-signature text-academia-light">Edit Volume</h2>
           <button
             onClick={onCancel}
             className="text-academia-muted hover:text-academia-light transition-colors p-2 rounded-lg hover:bg-academia-green/10"
@@ -152,6 +158,22 @@ export default function EditBookForm({ book, onUpdateBook, onCancel }: EditBookF
         </div>
 
         <form onSubmit={handleSubmit} className="p-8 space-y-8">
+          {/* Error from API */}
+          {submitError && (
+            <div className="p-4 bg-red-900/20 border border-red-500/50 rounded-xl">
+              <div className="flex items-center justify-between">
+                <p className="text-red-400 font-body">{submitError}</p>
+                <button
+                  type="button"
+                  onClick={() => setSubmitError(null)}
+                  className="text-red-400 hover:text-red-300 transition-colors"
+                >
+                  <X size={18} />
+                </button>
+              </div>
+            </div>
+          )}
+
           {/* Title */}
           <div>
             <label htmlFor="title" className="block text-lg font-heading font-semibold text-academia-light mb-3">
@@ -203,14 +225,13 @@ export default function EditBookForm({ book, onUpdateBook, onCancel }: EditBookF
                 placeholder="Paste image URL from Amazon or Goodreads"
               />
               <p className="text-xs text-academia-muted mt-2 font-body">
-                💡 Right-click on a book cover → &quot;Copy Image Address&quot;
+                Right-click on a book cover &rarr; &quot;Copy Image Address&quot;
               </p>
             </div>
 
-            {/* Cover Preview */}
             {bookCover && (
               <div className="mt-3">
-                <p className="text-academia-green text-sm mb-2 font-body">✓ Cover preview:</p>
+                <p className="text-academia-green text-sm mb-2 font-body">Cover preview:</p>
                 <div className="relative w-32 h-44 border-2 border-academia-green/50 rounded-lg overflow-hidden">
                   <Image 
                     src={bookCover} 
@@ -311,10 +332,11 @@ export default function EditBookForm({ book, onUpdateBook, onCancel }: EditBookF
             </button>
             <button
               type="submit"
-              className="px-8 py-3 bg-academia-bronze text-academia-light rounded-xl hover:bg-academia-bronze/80 transition-all duration-300 flex items-center gap-3 font-heading font-semibold border border-academia-green/30 shadow-lg hover:shadow-academia-green/20"
+              disabled={isSubmitting}
+              className="px-8 py-3 bg-academia-bronze text-academia-light rounded-xl hover:bg-academia-bronze/80 transition-all duration-300 flex items-center gap-3 font-heading font-semibold border border-academia-green/30 shadow-lg hover:shadow-academia-green/20 disabled:opacity-50"
             >
               <Edit size={22} />
-              Update Volume
+              {isSubmitting ? 'Updating...' : 'Update Volume'}
             </button>
           </div>
         </form>
