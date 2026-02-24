@@ -1,5 +1,17 @@
 @import "tailwindcss";
 
+/* Brilliant Signature 3 – add font file to public/fonts/ (see README there) */
+@font-face {
+  font-family: "Brilliant Signature 3";
+  src:
+    url("/fonts/BrilliantSignature3.woff2") format("woff2"),
+    url("/fonts/BrilliantSignature3.woff") format("woff"),
+    url("/fonts/BrilliantSignature3.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 @utility line-clamp-2 {
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -35,6 +47,7 @@
   --font-heading: var(--font-crimson);
   --font-body: var(--font-lora);
   --font-accent: var(--font-merriweather);
+  --font-signature: "Brilliant Signature 3", var(--font-playfair), serif;
 }
 
 @theme inline {
@@ -99,17 +112,14 @@ body {
   font-family: var(--font-merriweather), serif;
 }
 
+.font-signature {
+  font-family: var(--font-signature);
+}
+
 /* Custom focus styles */
 .focus-green:focus {
   outline: 2px solid #829ea2;
   outline-offset: 2px;
-}
-
-/* Subtle texture overlay */
-.texture-overlay {
-  background-image: 
-    radial-gradient(circle at 1px 1px, rgba(130, 158, 162, 0.08) 1px, transparent 0);
-  background-size: 20px 20px;
 }
 
 /* Dark Academia - The Black Aesthetic */

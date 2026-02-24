@@ -6,7 +6,7 @@ import { useBooks } from '@/hooks/useBooks';
 import AddBookForm from '@/components/AddBookForm';
 import EditBookForm from '@/components/EditBookForm';
 import BookCard from '@/components/BookCard';
-import { BookOpen, Plus, Star, Filter, X, Search } from 'lucide-react';
+import { BookOpen, Plus, Star, Filter, X, Search, ArrowUp } from 'lucide-react';
 
 export default function Home() {
   const { 
@@ -24,9 +24,16 @@ export default function Home() {
   const [searchQuery, setSearchQuery] = useState('');
   const [isClient, setIsClient] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [showBackToTop, setShowBackToTop] = useState(false);
 
   useEffect(() => {
     setIsClient(true);
+  }, []);
+
+  useEffect(() => {
+    const handleScroll = () => setShowBackToTop(window.scrollY > 400);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const stats = getStats();
@@ -76,6 +83,7 @@ export default function Home() {
       case 'Romance':
       case 'Dark Romance':
       case 'Fantasy':
+      case 'Horror':
         return filteredBooks.filter(book => book.genre === filter);
       case 'unread':
       case 'read':
@@ -88,7 +96,7 @@ export default function Home() {
   const filteredBooks = getFilteredBooks();
 
   return (
-    <div className="min-h-screen bg-academia-dark texture-overlay">
+    <div className="min-h-screen bg-academia-dark">
       <div className="container mx-auto px-4 py-8">
         {/* Error Display */}
         {error && (
@@ -111,7 +119,7 @@ export default function Home() {
             <div className="p-3 rounded-full bg-academia-blood-red/20 border border-academia-blood-red/30">
               <BookOpen size={36} className="text-academia-blood-red" />
             </div>
-            <h1 className="text-5xl font-display font-bold text-academia-light tracking-wide">
+            <h1 className="text-5xl font-signature font-bold text-academia-light tracking-wide">
               Bibliotheca
             </h1>
           </div>
@@ -211,6 +219,7 @@ export default function Home() {
                 <option value="Romance">Romance</option>
                 <option value="Dark Romance">Dark Romance</option>
                 <option value="Fantasy">Fantasy</option>
+                <option value="Horror">Horror</option>
               </select>
             </div>
           </div>
@@ -344,6 +353,18 @@ export default function Home() {
           />
         )}
       </div>
+
+      {/* Back to top button */}
+      {showBackToTop && (
+        <button
+          type="button"
+          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+          className="fixed right-6 bottom-8 z-40 p-3 rounded-full bg-academia-green text-academia-light border border-academia-green/30 shadow-lg hover:bg-academia-green/80 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-academia-sage-green/50"
+          aria-label="Back to top"
+        >
+          <ArrowUp size={24} />
+        </button>
+      )}
     </div>
   );
 }

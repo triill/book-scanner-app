@@ -1,6 +1,6 @@
-export type BookGenre = 'Dark Romance' | 'Romance' | 'Fantasy';
-export type BookStatus = 'unread' | 'read';
-export type BookFormat = 'physical' | 'kindle' | 'both';
+export type BookGenre = 'Dark Romance' | 'Romance' | 'Fantasy' | 'Horror';
+export type BookStatus = 'Unread' | 'Read'| 'DNF';
+export type BookFormat = 'Physical' | 'Kindle' | 'Both';
 
 export interface Book {
   id: string;

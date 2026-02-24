@@ -237,6 +237,7 @@ export default function AddBookForm({ onAddBook, onCancel }: AddBookFormProps) {
               <option value="Romance">Romance</option>
               <option value="Dark Romance">Dark Romance</option>
               <option value="Fantasy">Fantasy</option>
+              <option value="Horror">Horror</option>
             </select>
           </div>
 
