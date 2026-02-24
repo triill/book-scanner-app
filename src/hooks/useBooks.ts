@@ -64,7 +64,10 @@ export function useBooks() {
         body: JSON.stringify(updates),
       });
 
-      if (!response.ok) throw new Error('Failed to update book');
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => null);
+        throw new Error(errorData?.error || 'Failed to update book');
+      }
 
       const updatedBook = await response.json();
       setBooks(prevBooks =>

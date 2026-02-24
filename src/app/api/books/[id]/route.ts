@@ -38,16 +38,43 @@ export async function PATCH(
     const { id } = await params;
     const body = await request.json();
 
+    const data: Record<string, unknown> = {};
+
+    if (body.title !== undefined) data.title = body.title;
+    if (body.genre !== undefined) data.genre = body.genre;
+    if (body.description !== undefined) data.description = body.description;
+    if (body.publishedDate !== undefined) data.publishedDate = body.publishedDate;
+    if (body.publisher !== undefined) data.publisher = body.publisher;
+    if (body.pageCount !== undefined) data.pageCount = body.pageCount;
+    if (body.imageUrl !== undefined) data.imageUrl = body.imageUrl;
+    if (body.language !== undefined) data.language = body.language;
+    if (body.previewLink !== undefined) data.previewLink = body.previewLink;
+    if (body.status !== undefined) data.status = body.status;
+    if (body.format !== undefined) data.format = body.format;
+
+    if (body.rating !== undefined) {
+      data.rating = body.rating === null ? null : Number(body.rating);
+    }
+
+    if (body.authors !== undefined) {
+      data.authors = { set: Array.isArray(body.authors) ? body.authors : [body.authors] };
+    }
+
+    if (body.categories !== undefined) {
+      data.categories = { set: Array.isArray(body.categories) ? body.categories : [body.categories] };
+    }
+
     const book = await prisma.book.update({
       where: { id },
-      data: body,
+      data,
     });
 
     return NextResponse.json(book);
   } catch (error) {
-    console.error('Error updating book:', error);
+    const message = error instanceof Error ? error.message : 'Failed to update book';
+    console.error('Error updating book:', message, error);
     return NextResponse.json(
-      { error: 'Failed to update book' },
+      { error: message },
       { status: 500 }
     );
   }
