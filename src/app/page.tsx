@@ -119,7 +119,7 @@ export default function Home() {
             <div className="p-3 rounded-full bg-academia-blood-red/20 border border-academia-blood-red/30">
               <BookOpen size={36} className="text-academia-blood-red" />
             </div>
-            <h1 className="text-5xl font-signature font-bold text-academia-light tracking-wide">
+            <h1 className="text-5xl font-signature text-academia-light tracking-wide">
               Bibliotheca
             </h1>
           </div>
@@ -137,19 +137,19 @@ export default function Home() {
           
           <div className={`grid grid-cols-2 md:grid-cols-4 gap-6 mb-6 ${!isClient || books.length === 0 ? 'opacity-0 pointer-events-none' : ''}`}>
             <div className="bg-academia-card p-6 rounded-xl border border-academia text-center hover:border-academia-orange/50 transition-all duration-300">
-              <div className="text-3xl font-heading font-bold text-academia-orange mb-2 border-2 border-academia-orange/30 rounded-lg py-2 px-4 inline-block">{isClient ? stats.totalBooks : 0}</div>
+              <div className="text-3xl font-signature text-academia-orange mb-2 border-2 border-academia-orange/30 rounded-lg py-2 px-4 inline-block">{isClient ? stats.totalBooks : 0}</div>
               <div className="text-sm text-academia-muted font-body">Total Volumes</div>
             </div>
             <div className="bg-academia-card p-6 rounded-xl border border-academia text-center hover:border-academia-green/50 transition-all duration-300">
-              <div className="text-3xl font-heading font-bold text-academia-orange mb-2 border-2 border-academia-orange/30 rounded-lg py-2 px-4 inline-block">{isClient ? stats.fiveStarBooks : 0}</div>
+              <div className="text-3xl font-signature text-academia-orange mb-2 border-2 border-academia-orange/30 rounded-lg py-2 px-4 inline-block">{isClient ? stats.fiveStarBooks : 0}</div>
               <div className="text-sm text-academia-muted font-body">Masterpieces</div>
             </div>
             <div className="bg-academia-card p-6 rounded-xl border border-academia text-center hover:border-academia-green/50 transition-all duration-300">
-              <div className="text-3xl font-heading font-bold text-academia-orange mb-2 border-2 border-academia-orange/30 rounded-lg py-2 px-4 inline-block">{isClient ? stats.readBooks : 0}</div>
+              <div className="text-3xl font-signature text-academia-orange mb-2 border-2 border-academia-orange/30 rounded-lg py-2 px-4 inline-block">{isClient ? stats.readBooks : 0}</div>
               <div className="text-sm text-academia-muted font-body">Completed</div>
             </div>
             <div className="bg-academia-card p-6 rounded-xl border border-academia text-center hover:border-academia-green/50 transition-all duration-300">
-              <div className="text-3xl font-heading font-bold text-academia-orange mb-2 border-2 border-academia-orange/30 rounded-lg py-2 px-4 inline-block">{isClient ? stats.unreadBooks : 0}</div>
+              <div className="text-3xl font-signature text-academia-orange mb-2 border-2 border-academia-orange/30 rounded-lg py-2 px-4 inline-block">{isClient ? stats.unreadBooks : 0}</div>
               <div className="text-sm text-academia-muted font-body">Unread</div>
             </div>
           </div>

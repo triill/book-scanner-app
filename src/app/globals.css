@@ -42,12 +42,10 @@
   --text-muted: #445257;
   --text-accent: #829ea2;
   
-  /* Font Variables: Monsieur La Doulaise (h1, author), Poiret One (rest) */
-  --font-display: var(--font-monsieur);
-  --font-heading: var(--font-poiret);
-  --font-body: var(--font-poiret);
-  --font-accent: var(--font-poiret);
-  --font-signature: var(--font-monsieur), cursive;
+  /* Font aliases — NOT referencing Next.js font vars here (they live on <body>) */
+  --font-heading: inherit;
+  --font-body: inherit;
+  --font-accent: inherit;
 }
 
 @theme inline {
@@ -64,10 +62,6 @@
   --color-accent-warm-grey: var(--accent-warm-grey);
   --color-text-muted: var(--text-muted);
   --color-text-accent: var(--text-accent);
-  --font-display: var(--font-display);
-  --font-heading: var(--font-heading);
-  --font-body: var(--font-body);
-  --font-accent: var(--font-accent);
 }
 
 body {
@@ -113,7 +107,7 @@ body {
 }
 
 .font-signature {
-  font-family: var(--font-signature);
+  font-family: var(--font-monsieur), cursive;
 }
 
 /* Custom focus styles */
