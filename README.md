@@ -183,7 +183,6 @@ model Book {
   authors         String[]
   genre           String
   description     String?
-  isbn            String?
   publishedDate   String?
   publisher       String?
   pageCount       Int?
@@ -265,9 +264,8 @@ Change in `src/app/layout.tsx`.
 ### Adding a Book
 1. Click "Add Volume" button
 2. Fill in book details (title and authors required)
-3. Optionally add ISBN to auto-fetch cover
-4. Or manually add cover URL
-5. Click "Add to Library"
+3. Optionally paste a book cover image URL (e.g. from Amazon or Goodreads)
+4. Click "Add to Library"
 
 ### Filtering Books
 - Click genre buttons to filter by category

@@ -16,7 +16,6 @@ model Book {
   authors         String[]
   genre           String   // Dark Romance, Romance, Fantasy
   description     String?  @db.Text
-  isbn            String?
   publishedDate   String?
   publisher       String?
   pageCount       Int?
@@ -26,7 +25,7 @@ model Book {
   previewLink     String?
   
   // Tracking fields
-  rating          Int?     // 1-5 stars
+  rating          Float?   // 0.5-5 stars in half-star steps
   status          String   // unread, read
   format          String   // physical, kindle, both
   dateAdded       DateTime @default(now())

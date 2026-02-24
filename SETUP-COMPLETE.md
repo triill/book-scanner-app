@@ -148,7 +148,6 @@ model Book {
   authors         String[]
   genre           String
   description     String?
-  isbn            String?
   publishedDate   String?
   publisher       String?
   pageCount       Int?

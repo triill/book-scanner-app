@@ -77,19 +77,25 @@ export default function BookCard({ book, onEdit }: BookCardProps) {
           </span>
         </div>
 
-        {/* Rating */}
+        {/* Rating (half-star: 10 segments, filled by rating) */}
         {book.rating && book.rating > 0 && (
           <div className="flex items-center gap-0.5 mb-2">
-            {[...Array(5)].map((_, i) => (
-              <Star
-                key={i}
-                size={10}
-                className={`transition-colors duration-300 ${
-                  i < book.rating! ? 'text-academia-orange fill-current' : 'text-academia-muted'
-                }`}
-              />
-            ))}
-            <span className="ml-1 text-[10px] font-heading font-semibold text-academia-light">{book.rating}/5</span>
+            {[...Array(10)].map((_, i) => {
+              const halfStarValue = (i + 1) * 0.5;
+              const isFilled = book.rating! >= halfStarValue;
+              return (
+                <Star
+                  key={i}
+                  size={10}
+                  className={`transition-colors duration-300 ${
+                    isFilled ? 'text-academia-orange fill-current' : 'text-academia-muted'
+                  }`}
+                />
+              );
+            })}
+            <span className="ml-1 text-[10px] font-heading font-semibold text-academia-light">
+              {book.rating % 1 === 0 ? book.rating : book.rating.toFixed(1)}/5
+            </span>
           </div>
         )}
 
@@ -100,9 +106,6 @@ export default function BookCard({ book, onEdit }: BookCardProps) {
         )}
 
         <div className="space-y-0.5 text-[9px] text-academia-muted font-body mb-2">
-          {book.isbn && (
-            <p className="truncate"><span className="font-heading font-semibold text-academia-sage-green">ISBN:</span> {book.isbn}</p>
-          )}
           {book.publishedDate && (
             <p className="truncate"><span className="font-heading font-semibold text-academia-sage-green">Published:</span> {book.publishedDate}</p>
           )}

@@ -140,7 +140,6 @@ async function main() {
         authors: book.authors,
         genre: book.genre,
         description: book.description,
-        isbn: book.isbn,
         publishedDate: book.publishedDate,
         publisher: book.publisher,
         pageCount: book.pageCount,

@@ -8,7 +8,6 @@ export interface Book {
   authors: string[];
   genre: BookGenre;
   description?: string;
-  isbn?: string;
   publishedDate?: string;
   publisher?: string;
   pageCount?: number;
@@ -18,7 +17,7 @@ export interface Book {
   previewLink?: string;
   
   // New tracking fields
-  rating?: number; // 1-5 stars
+  rating?: number; // 0.5-5 stars in half-star steps
   status: BookStatus;
   format: BookFormat;
   dateAdded: string | Date;

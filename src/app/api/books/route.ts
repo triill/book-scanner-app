@@ -13,7 +13,7 @@ export async function GET(request: NextRequest) {
     
     if (genre) where.genre = genre;
     if (status) where.status = status;
-    if (rating) where.rating = parseInt(rating);
+    if (rating) where.rating = parseFloat(rating);
 
     const books = await prisma.book.findMany({
       where,
@@ -73,7 +73,6 @@ export async function POST(request: NextRequest) {
         authors: body.authors,
         genre: body.genre,
         description: body.description,
-        isbn: body.isbn,
         publishedDate: body.publishedDate,
         publisher: body.publisher,
         pageCount: body.pageCount,

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 import { Book, BookGenre, BookStatus, BookFormat } from '@/types/book';
 import { Plus, X, Star } from 'lucide-react';
 import Image from 'next/image';
@@ -16,7 +16,6 @@ export default function AddBookForm({ onAddBook, onCancel }: AddBookFormProps) {
     authors: '',
     genre: 'Romance' as BookGenre,
     description: '',
-    isbn: '',
     rating: 0,
     status: 'unread' as BookStatus,
     format: 'physical' as BookFormat
@@ -24,9 +23,7 @@ export default function AddBookForm({ onAddBook, onCancel }: AddBookFormProps) {
 
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [bookCover, setBookCover] = useState<string | null>(null);
-  const [isLoadingCover, setIsLoadingCover] = useState(false);
   const [manualImageUrl, setManualImageUrl] = useState('');
-  const debounceTimeout = useRef<NodeJS.Timeout | null>(null);
 
   const handleInputChange = (field: string, value: string | number) => {
     setFormData(prev => ({ ...prev, [field]: value }));
@@ -34,49 +31,6 @@ export default function AddBookForm({ onAddBook, onCancel }: AddBookFormProps) {
     if (errors[field]) {
       setErrors(prev => ({ ...prev, [field]: '' }));
     }
-  };
-
-  const fetchBookCover = async (isbn: string) => {
-    if (!isbn.trim()) {
-      setBookCover(null);
-      return;
-    }
-
-    setIsLoadingCover(true);
-    try {
-      // Clean ISBN (remove hyphens and spaces)
-      const cleanIsbn = isbn.replace(/[-\s]/g, '');
-      const coverUrl = `https://covers.openlibrary.org/b/isbn/${cleanIsbn}-L.jpg`;
-      
-      // Test if the cover exists by trying to load it
-      const img = document.createElement('img');
-      img.onload = () => {
-        setBookCover(coverUrl);
-        setIsLoadingCover(false);
-      };
-      img.onerror = () => {
-        setBookCover(null);
-        setIsLoadingCover(false);
-      };
-      img.src = coverUrl;
-    } catch {
-      setBookCover(null);
-      setIsLoadingCover(false);
-    }
-  };
-
-  const handleIsbnChange = (value: string) => {
-    handleInputChange('isbn', value);
-    
-    // Clear previous timeout
-    if (debounceTimeout.current) {
-      clearTimeout(debounceTimeout.current);
-    }
-    
-    // Debounce the cover fetch
-    debounceTimeout.current = setTimeout(() => {
-      fetchBookCover(value);
-    }, 500);
   };
 
   const handleManualImageUrl = (url: string) => {
@@ -132,7 +86,6 @@ export default function AddBookForm({ onAddBook, onCancel }: AddBookFormProps) {
       authors: authorsArray,
       genre: formData.genre,
       description: formData.description.trim() || undefined,
-      isbn: formData.isbn.trim() || undefined,
       imageUrl: bookCover || undefined,
       rating: formData.rating > 0 ? formData.rating : undefined,
       status: formData.status,
@@ -142,28 +95,36 @@ export default function AddBookForm({ onAddBook, onCancel }: AddBookFormProps) {
     onAddBook(bookData);
   };
 
+  /** Half-star rating values: 0.5, 1, 1.5, ..., 5 */
+  const HALF_STAR_VALUES = [0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5] as const;
+
   const renderStars = () => {
     return (
-      <div className="flex items-center gap-1">
-        {[1, 2, 3, 4, 5].map((star) => (
-          <button
-            key={star}
-            type="button"
-            onClick={() => handleInputChange('rating', star)}
-            className={`transition-all duration-300 ${
-              star <= formData.rating
-                ? 'text-academia-sage-green scale-110'
-                : 'text-academia-muted hover:text-academia-sage-green hover:scale-105'
-            }`}
-          >
-            <Star size={20} fill={star <= formData.rating ? 'currentColor' : 'none'} />
-          </button>
-        ))}
+      <div className="flex items-center gap-0.5">
+        {HALF_STAR_VALUES.map((value, index) => {
+          const isFilled = formData.rating >= value;
+          const isEndOfFullStar = (index + 1) % 2 === 0;
+          return (
+            <button
+              key={value}
+              type="button"
+              onClick={() => handleInputChange('rating', value)}
+              className={`transition-all duration-300 ${
+                isFilled
+                  ? 'text-academia-sage-green scale-110'
+                  : 'text-academia-muted hover:text-academia-sage-green hover:scale-105'
+              } ${isEndOfFullStar ? 'mr-0.5' : ''}`}
+              title={`${value} stars`}
+            >
+              <Star size={20} fill={isFilled ? 'currentColor' : 'none'} />
+            </button>
+          );
+        })}
         {formData.rating > 0 && (
           <button
             type="button"
             onClick={() => handleInputChange('rating', 0)}
-            className="ml-3 text-academia-muted hover:text-academia-light font-body"
+            className="ml-3 text-academia-muted hover:text-academia-light font-body text-sm"
           >
             Clear
           </button>
@@ -222,27 +183,8 @@ export default function AddBookForm({ onAddBook, onCancel }: AddBookFormProps) {
             {errors.authors && <p className="text-red-400 text-sm mt-2 font-body">{errors.authors}</p>}
           </div>
 
-          {/* ISBN and Cover */}
+          {/* Book Cover */}
           <div className="space-y-4">
-            {/* ISBN Field */}
-            <div>
-              <label htmlFor="isbn" className="block text-lg font-heading font-semibold text-academia-light mb-3">
-                ISBN (Optional)
-              </label>
-              <input
-                type="text"
-                id="isbn"
-                value={formData.isbn}
-                onChange={(e) => handleIsbnChange(e.target.value)}
-                className="w-full px-4 py-3 border border-academia rounded-xl focus:outline-none focus:ring-2 focus:ring-academia-green/50 text-academia-light bg-academia-dark font-body"
-                placeholder="Enter ISBN to auto-fetch cover"
-              />
-              {isLoadingCover && (
-                <p className="text-academia-orange text-sm mt-2 font-body">Searching for cover...</p>
-              )}
-            </div>
-
-            {/* Manual Image URL Field */}
             <div>
               <label htmlFor="manualImageUrl" className="block text-lg font-heading font-semibold text-academia-light mb-3">
                 Book Cover URL (Optional)
@@ -261,7 +203,7 @@ export default function AddBookForm({ onAddBook, onCancel }: AddBookFormProps) {
             </div>
 
             {/* Cover Preview */}
-            {bookCover && !isLoadingCover && (
+            {bookCover && (
               <div className="mt-3">
                 <p className="text-academia-green text-sm mb-2 font-body">✓ Cover preview:</p>
                 <div className="relative w-32 h-44 border-2 border-academia-green/50 rounded-lg overflow-hidden">
