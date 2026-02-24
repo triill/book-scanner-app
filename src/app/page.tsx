@@ -121,19 +121,19 @@ export default function Home() {
           
           <div className={`grid grid-cols-2 md:grid-cols-4 gap-6 mb-6 transition-opacity duration-300 ${!hasBooks ? 'opacity-0 pointer-events-none' : ''}`}>
             <div className="bg-academia-card p-6 rounded-xl border border-academia text-center hover:border-[var(--umber)]/50 transition-all duration-300">
-              <div className="text-[2rem] font-signature text-[var(--gold)] mb-2 border-2 border-[var(--umber)]/30 rounded-lg py-2 px-4 inline-block" suppressHydrationWarning>{stats.totalBooks}</div>
+              <div className="text-[2rem] font-signature text-[var(--gold)] mb-2 border-2 border-[var(--umber)]/30 rounded-lg py-2 px-4 inline-block bg-[var(--ink)]" suppressHydrationWarning>{stats.totalBooks}</div>
               <div className="text-[1.8rem] text-academia-muted">Total Volumes</div>
             </div>
             <div className="bg-academia-card p-6 rounded-xl border border-academia text-center hover:border-[var(--umber)]/50 transition-all duration-300">
-              <div className="text-[2rem] font-signature text-[var(--gold)] mb-2 border-2 border-[var(--umber)]/30 rounded-lg py-2 px-4 inline-block" suppressHydrationWarning>{stats.fiveStarBooks}</div>
+              <div className="text-[2rem] font-signature text-[var(--gold)] mb-2 border-2 border-[var(--umber)]/30 rounded-lg py-2 px-4 inline-block bg-[var(--ink)]" suppressHydrationWarning>{stats.fiveStarBooks}</div>
               <div className="text-[1.8rem] text-academia-muted">Masterpieces</div>
             </div>
             <div className="bg-academia-card p-6 rounded-xl border border-academia text-center hover:border-[var(--umber)]/50 transition-all duration-300">
-              <div className="text-[2rem] font-signature text-[var(--gold)] mb-2 border-2 border-[var(--umber)]/30 rounded-lg py-2 px-4 inline-block" suppressHydrationWarning>{stats.readBooks}</div>
+              <div className="text-[2rem] font-signature text-[var(--gold)] mb-2 border-2 border-[var(--umber)]/30 rounded-lg py-2 px-4 inline-block bg-[var(--ink)]" suppressHydrationWarning>{stats.readBooks}</div>
               <div className="text-[1.8rem] text-academia-muted">Completed</div>
             </div>
             <div className="bg-academia-card p-6 rounded-xl border border-academia text-center hover:border-[var(--umber)]/50 transition-all duration-300">
-              <div className="text-[2rem] font-signature text-[var(--gold)] mb-2 border-2 border-[var(--umber)]/30 rounded-lg py-2 px-4 inline-block" suppressHydrationWarning>{stats.unreadBooks}</div>
+              <div className="text-[2rem] font-signature text-[var(--gold)] mb-2 border-2 border-[var(--umber)]/30 rounded-lg py-2 px-4 inline-block bg-[var(--ink)]" suppressHydrationWarning>{stats.unreadBooks}</div>
               <div className="text-[1.8rem] text-academia-muted">Unread</div>
             </div>
           </div>
