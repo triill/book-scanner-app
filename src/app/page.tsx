@@ -314,7 +314,7 @@ export default function Home() {
 
                 return Object.entries(groupedBooks).map(([author, authorBooks]) => (
                   <div key={author} className="space-y-4">
-                    <h3 className="text-xl font-heading font-semibold text-academia-sage-green border-b border-academia-green/30 pb-2">
+                    <h3 className="text-xl font-signature font-semibold text-academia-sage-green border-b border-academia-green/30 pb-2">
                       {author}
                     </h3>
                     <div className="flex flex-wrap gap-4">

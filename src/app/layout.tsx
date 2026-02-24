@@ -1,30 +1,18 @@
 import type { Metadata } from "next";
-import { Playfair_Display, Lora, Crimson_Text, Merriweather } from "next/font/google";
+import { Monsieur_La_Doulaise, Poiret_One } from "next/font/google";
 import "./globals.css";
 
-const playfairDisplay = Playfair_Display({
-  variable: "--font-playfair",
+const monsieurLaDoulaise = Monsieur_La_Doulaise({
+  variable: "--font-monsieur",
   subsets: ["latin"],
+  weight: ["400"],
   display: "swap",
 });
 
-const lora = Lora({
-  variable: "--font-lora",
+const poiretOne = Poiret_One({
+  variable: "--font-poiret",
   subsets: ["latin"],
-  display: "swap",
-});
-
-const crimsonText = Crimson_Text({
-  variable: "--font-crimson",
-  subsets: ["latin"],
-  weight: ["400", "600", "700"],
-  display: "swap",
-});
-
-const merriweather = Merriweather({
-  variable: "--font-merriweather",
-  subsets: ["latin"],
-  weight: ["300", "400", "700", "900"],
+  weight: ["400"],
   display: "swap",
 });
 
@@ -41,7 +29,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${playfairDisplay.variable} ${lora.variable} ${crimsonText.variable} ${merriweather.variable} antialiased`}
+        className={`${monsieurLaDoulaise.variable} ${poiretOne.variable} antialiased`}
       >
         {children}
       </body>

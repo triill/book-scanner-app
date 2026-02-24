@@ -57,7 +57,7 @@ export default function BookCard({ book, onEdit }: BookCardProps) {
           )}
         </div>
 
-        <p className="text-academia-muted mb-2 font-body text-[10px] line-clamp-1">
+        <p className="text-academia-muted mb-2 font-signature text-[10px] line-clamp-1">
           by {book.authors.join(', ')}
         </p>
 

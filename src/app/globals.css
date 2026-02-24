@@ -42,12 +42,12 @@
   --text-muted: #445257;
   --text-accent: #829ea2;
   
-  /* Font Variables */
-  --font-display: var(--font-playfair);
-  --font-heading: var(--font-crimson);
-  --font-body: var(--font-lora);
-  --font-accent: var(--font-merriweather);
-  --font-signature: "Brilliant Signature 3", var(--font-playfair), serif;
+  /* Font Variables: Monsieur La Doulaise (h1, author), Poiret One (rest) */
+  --font-display: var(--font-monsieur);
+  --font-heading: var(--font-poiret);
+  --font-body: var(--font-poiret);
+  --font-accent: var(--font-poiret);
+  --font-signature: var(--font-monsieur), cursive;
 }
 
 @theme inline {
@@ -73,7 +73,7 @@
 body {
   background: #0b0d11;
   color: #829ea2;
-  font-family: var(--font-lora), serif;
+  font-family: var(--font-poiret), sans-serif;
   line-height: 1.6;
 }
 
@@ -97,19 +97,19 @@ body {
 
 /* Typography Classes */
 .font-display {
-  font-family: var(--font-playfair), serif;
+  font-family: var(--font-monsieur), cursive;
 }
 
 .font-heading {
-  font-family: var(--font-crimson), serif;
+  font-family: var(--font-poiret), sans-serif;
 }
 
 .font-body {
-  font-family: var(--font-lora), serif;
+  font-family: var(--font-poiret), sans-serif;
 }
 
 .font-accent {
-  font-family: var(--font-merriweather), serif;
+  font-family: var(--font-poiret), sans-serif;
 }
 
 .font-signature {
