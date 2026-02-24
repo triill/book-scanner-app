@@ -8,6 +8,27 @@ import EditBookForm from '@/components/EditBookForm';
 import BookCard from '@/components/BookCard';
 import { BookOpen, Plus, Star, Filter, X, Search, ArrowUp } from 'lucide-react';
 
+function CornerSwirl() {
+  return (
+    <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path
+        d="M2 38 C2 20, 8 8, 20 4 C14 10, 10 18, 10 26 C10 16, 16 10, 26 8 C18 12, 14 20, 14 30"
+        stroke="currentColor"
+        strokeWidth="1.2"
+        strokeLinecap="round"
+        fill="none"
+      />
+      <path
+        d="M4 34 C6 22, 10 14, 18 8"
+        stroke="currentColor"
+        strokeWidth="0.8"
+        strokeLinecap="round"
+        fill="none"
+      />
+    </svg>
+  );
+}
+
 export default function Home() {
   const { 
     books, 
@@ -107,34 +128,57 @@ export default function Home() {
             <h1 className="text-[5rem] font-signature text-academia-light tracking-wide mb-4 drop-shadow-lg">
               Bibliotheca
             </h1>
-            <p className="text-academia-muted max-w-2xl mx-auto text-[1.8rem] leading-relaxed">
-              Personal library
-            </p>
+          
           </div>
         </div>
 
         {/* Stats Section */}
         <div className="mb-8">
-          <div className="flex items-center justify-between mb-6">
-            <h2 className="text-[2rem] text-academia-light">Library Statistics</h2>
-          </div>
-          
+         
           <div className={`grid grid-cols-2 md:grid-cols-4 gap-6 mb-6 transition-opacity duration-300 ${!hasBooks ? 'opacity-0 pointer-events-none' : ''}`}>
-            <div className="bg-academia-card p-6 rounded-xl border border-academia text-center hover:border-[var(--umber)]/50 transition-all duration-300">
-              <div className="text-[2rem] font-signature text-[var(--gold)] mb-2 border-2 border-[var(--umber)]/30 rounded-lg py-2 px-4 inline-block bg-[var(--ink)]" suppressHydrationWarning>{stats.totalBooks}</div>
-              <div className="text-[1.8rem] text-academia-muted">Total Volumes</div>
+            <div className="ornate-card bg-academia-card p-6 rounded-xl text-center transition-all duration-300">
+              <div className="ornate-inner" />
+              <div className="corner-tl"><CornerSwirl /></div>
+              <div className="corner-tr"><CornerSwirl /></div>
+              <div className="corner-bl"><CornerSwirl /></div>
+              <div className="corner-br"><CornerSwirl /></div>
+              <div className="relative z-[2]">
+                <div className="text-[2rem] font-signature text-[var(--gold)] mb-2 border border-academia rounded-lg py-2 px-4 inline-block bg-[var(--ink)]" suppressHydrationWarning>{stats.totalBooks}</div>
+                <div className="text-[1.8rem] text-academia-light">Total Volumes</div>
+              </div>
             </div>
-            <div className="bg-academia-card p-6 rounded-xl border border-academia text-center hover:border-[var(--umber)]/50 transition-all duration-300">
-              <div className="text-[2rem] font-signature text-[var(--gold)] mb-2 border-2 border-[var(--umber)]/30 rounded-lg py-2 px-4 inline-block bg-[var(--ink)]" suppressHydrationWarning>{stats.fiveStarBooks}</div>
-              <div className="text-[1.8rem] text-academia-muted">Masterpieces</div>
+            <div className="ornate-card bg-academia-card p-6 rounded-xl text-center transition-all duration-300">
+              <div className="ornate-inner" />
+              <div className="corner-tl"><CornerSwirl /></div>
+              <div className="corner-tr"><CornerSwirl /></div>
+              <div className="corner-bl"><CornerSwirl /></div>
+              <div className="corner-br"><CornerSwirl /></div>
+              <div className="relative z-[2]">
+                <div className="text-[2rem] font-signature text-[var(--gold)] mb-2 border border-academia rounded-lg py-2 px-4 inline-block bg-[var(--ink)]" suppressHydrationWarning>{stats.fiveStarBooks}</div>
+                <div className="text-[1.8rem] text-academia-light">Masterpieces</div>
+              </div>
             </div>
-            <div className="bg-academia-card p-6 rounded-xl border border-academia text-center hover:border-[var(--umber)]/50 transition-all duration-300">
-              <div className="text-[2rem] font-signature text-[var(--gold)] mb-2 border-2 border-[var(--umber)]/30 rounded-lg py-2 px-4 inline-block bg-[var(--ink)]" suppressHydrationWarning>{stats.readBooks}</div>
-              <div className="text-[1.8rem] text-academia-muted">Completed</div>
+            <div className="ornate-card bg-academia-card p-6 rounded-xl text-center transition-all duration-300">
+              <div className="ornate-inner" />
+              <div className="corner-tl"><CornerSwirl /></div>
+              <div className="corner-tr"><CornerSwirl /></div>
+              <div className="corner-bl"><CornerSwirl /></div>
+              <div className="corner-br"><CornerSwirl /></div>
+              <div className="relative z-[2]">
+                <div className="text-[2rem] font-signature text-[var(--gold)] mb-2 border border-academia rounded-lg py-2 px-4 inline-block bg-[var(--ink)]" suppressHydrationWarning>{stats.readBooks}</div>
+                <div className="text-[1.8rem] text-academia-light">Completed</div>
+              </div>
             </div>
-            <div className="bg-academia-card p-6 rounded-xl border border-academia text-center hover:border-[var(--umber)]/50 transition-all duration-300">
-              <div className="text-[2rem] font-signature text-[var(--gold)] mb-2 border-2 border-[var(--umber)]/30 rounded-lg py-2 px-4 inline-block bg-[var(--ink)]" suppressHydrationWarning>{stats.unreadBooks}</div>
-              <div className="text-[1.8rem] text-academia-muted">Unread</div>
+            <div className="ornate-card bg-academia-card p-6 rounded-xl text-center transition-all duration-300">
+              <div className="ornate-inner" />
+              <div className="corner-tl"><CornerSwirl /></div>
+              <div className="corner-tr"><CornerSwirl /></div>
+              <div className="corner-bl"><CornerSwirl /></div>
+              <div className="corner-br"><CornerSwirl /></div>
+              <div className="relative z-[2]">
+                <div className="text-[2rem] font-signature text-[var(--gold)] mb-2 border border-academia rounded-lg py-2 px-4 inline-block bg-[var(--ink)]" suppressHydrationWarning>{stats.unreadBooks}</div>
+                <div className="text-[1.8rem] text-academia-light">Unread</div>
+              </div>
             </div>
           </div>
         </div>
@@ -151,7 +195,7 @@ export default function Home() {
                 placeholder="Search by title or author..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-10 pr-4 py-3 bg-academia-card border border-academia rounded-xl text-academia-light placeholder-academia-muted focus:outline-none focus:border-academia-green focus:ring-2 focus:ring-academia-green/20"
+                className="w-full pl-10 pr-4 py-3 bg-academia-card border border-academia rounded-xl text-[1.3rem] text-academia-light placeholder-academia-muted focus:outline-none focus:border-academia-green focus:ring-2 focus:ring-academia-green/20"
               />
               {searchQuery && (
                 <button
@@ -171,7 +215,7 @@ export default function Home() {
             <div className="flex flex-wrap gap-2">
               <button
                 onClick={() => setShowAddForm(true)}
-                className="flex items-center gap-3 px-6 py-3 bg-academia-green text-academia-light rounded-xl hover:bg-academia-green/80 transition-all duration-300 border border-academia-green/30 font-semibold shadow-lg hover:shadow-academia-green/20"
+                className="flex items-center gap-3 px-6 py-3 bg-academia-green text-[1.3rem] text-academia-light rounded-xl hover:bg-academia-green/80 transition-all duration-300 border border-academia-green/30 font-semibold shadow-lg hover:shadow-academia-green/20"
               >
                 <Plus size={22} />
                 Add Volume
@@ -179,10 +223,10 @@ export default function Home() {
               
               <button
                 onClick={() => setFilter('five-star')}
-                className={`flex items-center gap-3 px-5 py-2 rounded-xl transition-all duration-300 font-medium ${
+                className={`flex items-center gap-3 px-5 py-2 rounded-xl transition-all duration-300 font-medium text-[1.3rem] ${
                   filter === 'five-star'
                     ? 'bg-academia-green/20 text-academia-sage-green border border-academia-green/50'
-                    : 'bg-academia-card text-academia-muted hover:text-academia-light hover:bg-academia-card/80 border border-academia'
+                    : 'bg-academia-card text-academia-light hover:text-academia-light hover:bg-academia-card/80 border border-academia'
                 } ${!hasBooks ? 'opacity-0 pointer-events-none' : ''}`}
               >
                 <Star size={20} />
@@ -195,7 +239,7 @@ export default function Home() {
               <select
                 value={filter}
                 onChange={(e) => setFilter(e.target.value as 'all' | 'five-star' | BookGenre | 'unread' | 'read')}
-                className="px-4 py-2 bg-academia-card border border-academia rounded-xl text-academia-light focus:outline-none focus:border-academia-green focus:ring-2 focus:ring-academia-green/20"
+                className="px-4 py-2 bg-academia-card border border-academia rounded-xl text-[1.4rem] text-academia-light focus:outline-none focus:border-academia-green focus:ring-2 focus:ring-academia-green/20"
               >
                 <option value="all">All Books</option>
                 <option value="unread">Unread</option>

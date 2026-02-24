@@ -84,10 +84,7 @@ export default function BookCard({ book, onEdit }: BookCardProps) {
           )}
         </div>
 
-        <p className="text-academia-muted mb-3 text-[2.25rem] line-clamp-1">
-          by {book.authors.join(', ')}
-        </p>
-
+        
         {/* Genre and Status */}
         <div className="flex flex-wrap items-center gap-1.5 mb-3">
           <span className="px-2 py-0.5 bg-[var(--mahogany)] text-[var(--umber)] text-[1.2rem] rounded-full border border-[var(--umber)]/30">
