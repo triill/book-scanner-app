@@ -135,7 +135,7 @@ export default function EditBookForm({ book, onUpdateBook, onCancel }: EditBookF
           <button
             type="button"
             onClick={() => handleInputChange('rating', 0)}
-            className="ml-3 text-academia-muted hover:text-academia-light text-sm"
+            className="ml-3 text-academia-muted hover:text-academia-light text-[1.8rem]"
           >
             Clear
           </button>
@@ -148,7 +148,7 @@ export default function EditBookForm({ book, onUpdateBook, onCancel }: EditBookF
     <div className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4 z-50">
       <div className="bg-academia-dark rounded-2xl shadow-2xl border border-academia max-w-2xl w-full max-h-[90vh] overflow-y-auto">
         <div className="flex items-center justify-between p-8 border-b border-academia">
-          <h2 className="text-4xl text-academia-light">Edit Volume</h2>
+          <h2 className="text-[2rem] text-academia-light">Edit Volume</h2>
           <button
             onClick={onCancel}
             className="text-academia-muted hover:text-academia-light transition-colors p-2 rounded-lg hover:bg-academia-green/10"
@@ -176,7 +176,7 @@ export default function EditBookForm({ book, onUpdateBook, onCancel }: EditBookF
 
           {/* Title */}
           <div>
-            <label htmlFor="title" className="block text-lg font-semibold text-academia-light mb-3">
+            <label htmlFor="title" className="block text-[1.8rem] font-semibold text-academia-light mb-3">
               Title *
             </label>
             <input
@@ -189,12 +189,12 @@ export default function EditBookForm({ book, onUpdateBook, onCancel }: EditBookF
               }`}
               placeholder="Enter the title of your literary treasure"
             />
-            {errors.title && <p className="text-red-400 text-sm mt-2">{errors.title}</p>}
+            {errors.title && <p className="text-red-400 text-[1.8rem] mt-2">{errors.title}</p>}
           </div>
 
           {/* Authors */}
           <div>
-            <label htmlFor="authors" className="block text-lg font-semibold text-academia-light mb-3">
+            <label htmlFor="authors" className="block text-[1.8rem] font-semibold text-academia-light mb-3">
               Authors *
             </label>
             <input
@@ -207,13 +207,13 @@ export default function EditBookForm({ book, onUpdateBook, onCancel }: EditBookF
               }`}
               placeholder="Enter authors (comma-separated)"
             />
-            {errors.authors && <p className="text-red-400 text-sm mt-2">{errors.authors}</p>}
+            {errors.authors && <p className="text-red-400 text-[1.8rem] mt-2">{errors.authors}</p>}
           </div>
 
           {/* Book Cover */}
           <div className="space-y-4">
             <div>
-              <label htmlFor="manualImageUrl" className="block text-lg font-semibold text-academia-light mb-3">
+              <label htmlFor="manualImageUrl" className="block text-[1.8rem] font-semibold text-academia-light mb-3">
                 Book Cover URL (Optional)
               </label>
               <input
@@ -224,14 +224,14 @@ export default function EditBookForm({ book, onUpdateBook, onCancel }: EditBookF
                 className="w-full px-4 py-3 border border-academia rounded-xl focus:outline-none focus:ring-2 focus:ring-academia-green/50 text-academia-light bg-academia-dark"
                 placeholder="Paste image URL from Amazon or Goodreads"
               />
-              <p className="text-xs text-academia-muted mt-2">
+              <p className="text-[1.8rem] text-academia-muted mt-2">
                 Right-click on a book cover &rarr; &quot;Copy Image Address&quot;
               </p>
             </div>
 
             {bookCover && (
               <div className="mt-3">
-                <p className="text-academia-green text-sm mb-2">Cover preview:</p>
+                <p className="text-academia-green text-[1.8rem] mb-2">Cover preview:</p>
                 <div className="relative w-32 h-44 border-2 border-academia-green/50 rounded-lg overflow-hidden">
                   <Image 
                     src={bookCover} 
@@ -247,7 +247,7 @@ export default function EditBookForm({ book, onUpdateBook, onCancel }: EditBookF
 
           {/* Genre */}
           <div>
-            <label htmlFor="genre" className="block text-lg font-semibold text-academia-light mb-3">
+            <label htmlFor="genre" className="block text-[1.8rem] font-semibold text-academia-light mb-3">
               Genre *
             </label>
             <select
@@ -266,7 +266,7 @@ export default function EditBookForm({ book, onUpdateBook, onCancel }: EditBookF
           {/* Status and Format */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <label htmlFor="status" className="block text-lg font-semibold text-academia-light mb-3">
+              <label htmlFor="status" className="block text-[1.8rem] font-semibold text-academia-light mb-3">
                 Status
               </label>
               <select
@@ -281,7 +281,7 @@ export default function EditBookForm({ book, onUpdateBook, onCancel }: EditBookF
             </div>
 
             <div>
-              <label htmlFor="format" className="block text-lg font-semibold text-academia-light mb-3">
+              <label htmlFor="format" className="block text-[1.8rem] font-semibold text-academia-light mb-3">
                 Format
               </label>
               <select
@@ -299,16 +299,16 @@ export default function EditBookForm({ book, onUpdateBook, onCancel }: EditBookF
 
           {/* Rating */}
           <div>
-            <label className="block text-lg font-semibold text-academia-light mb-3">
+            <label className="block text-[1.8rem] font-semibold text-academia-light mb-3">
               Rating {formData.status === 'read' && '*'}
             </label>
             {renderStars()}
-            {errors.rating && <p className="text-red-400 text-sm mt-2">{errors.rating}</p>}
+            {errors.rating && <p className="text-red-400 text-[1.8rem] mt-2">{errors.rating}</p>}
           </div>
 
           {/* Description */}
           <div>
-            <label htmlFor="description" className="block text-lg font-semibold text-academia-light mb-3">
+            <label htmlFor="description" className="block text-[1.8rem] font-semibold text-academia-light mb-3">
               Description
             </label>
             <textarea

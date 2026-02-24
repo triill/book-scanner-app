@@ -113,11 +113,11 @@ export default function Home() {
             <div className="p-3 rounded-full bg-academia-blood-red/20 border border-academia-blood-red/30">
               <BookOpen size={36} className="text-academia-blood-red" />
             </div>
-            <h1 className="text-5xl font-signature text-academia-light tracking-wide">
+            <h1 className="text-[4rem] font-signature text-academia-light tracking-wide">
               Bibliotheca
             </h1>
           </div>
-          <p className="text-academia-muted max-w-2xl mx-auto text-lg leading-relaxed">
+          <p className="text-academia-muted max-w-2xl mx-auto text-[1.8rem] leading-relaxed">
             Personal library 
           </p>
         </div>
@@ -125,26 +125,26 @@ export default function Home() {
         {/* Stats Section */}
         <div className="mb-8">
           <div className="flex items-center justify-between mb-6">
-            <h2 className="text-3xl text-academia-light">Library Statistics</h2>
+            <h2 className="text-[2rem] text-academia-light">Library Statistics</h2>
            
           </div>
           
           <div className={`grid grid-cols-2 md:grid-cols-4 gap-6 mb-6 ${!isClient || books.length === 0 ? 'opacity-0 pointer-events-none' : ''}`}>
             <div className="bg-academia-card p-6 rounded-xl border border-academia text-center hover:border-academia-orange/50 transition-all duration-300">
-              <div className="text-3xl font-signature text-academia-orange mb-2 border-2 border-academia-orange/30 rounded-lg py-2 px-4 inline-block">{isClient ? stats.totalBooks : 0}</div>
-              <div className="text-sm text-academia-muted">Total Volumes</div>
+              <div className="text-[2rem] font-signature text-academia-orange mb-2 border-2 border-academia-orange/30 rounded-lg py-2 px-4 inline-block">{isClient ? stats.totalBooks : 0}</div>
+              <div className="text-[1.8rem] text-academia-muted">Total Volumes</div>
             </div>
             <div className="bg-academia-card p-6 rounded-xl border border-academia text-center hover:border-academia-green/50 transition-all duration-300">
-              <div className="text-3xl font-signature text-academia-orange mb-2 border-2 border-academia-orange/30 rounded-lg py-2 px-4 inline-block">{isClient ? stats.fiveStarBooks : 0}</div>
-              <div className="text-sm text-academia-muted">Masterpieces</div>
+              <div className="text-[2rem] font-signature text-academia-orange mb-2 border-2 border-academia-orange/30 rounded-lg py-2 px-4 inline-block">{isClient ? stats.fiveStarBooks : 0}</div>
+              <div className="text-[1.8rem] text-academia-muted">Masterpieces</div>
             </div>
             <div className="bg-academia-card p-6 rounded-xl border border-academia text-center hover:border-academia-green/50 transition-all duration-300">
-              <div className="text-3xl font-signature text-academia-orange mb-2 border-2 border-academia-orange/30 rounded-lg py-2 px-4 inline-block">{isClient ? stats.readBooks : 0}</div>
-              <div className="text-sm text-academia-muted">Completed</div>
+              <div className="text-[2rem] font-signature text-academia-orange mb-2 border-2 border-academia-orange/30 rounded-lg py-2 px-4 inline-block">{isClient ? stats.readBooks : 0}</div>
+              <div className="text-[1.8rem] text-academia-muted">Completed</div>
             </div>
             <div className="bg-academia-card p-6 rounded-xl border border-academia text-center hover:border-academia-green/50 transition-all duration-300">
-              <div className="text-3xl font-signature text-academia-orange mb-2 border-2 border-academia-orange/30 rounded-lg py-2 px-4 inline-block">{isClient ? stats.unreadBooks : 0}</div>
-              <div className="text-sm text-academia-muted">Unread</div>
+              <div className="text-[2rem] font-signature text-academia-orange mb-2 border-2 border-academia-orange/30 rounded-lg py-2 px-4 inline-block">{isClient ? stats.unreadBooks : 0}</div>
+              <div className="text-[1.8rem] text-academia-muted">Unread</div>
             </div>
           </div>
         </div>
@@ -222,7 +222,7 @@ export default function Home() {
         {/* Books Section */}
         <div className="mb-6">
           <div className="flex items-center justify-between mb-6">
-            <h2 className="text-4xl text-academia-light">
+            <h2 className="text-[2.5rem] text-academia-light">
               {searchQuery ? `Search Results for "${searchQuery}"` :
                filter === 'all' ? 'All Volumes' : 
                filter === 'five-star' ? 'Masterpieces' :
@@ -252,7 +252,7 @@ export default function Home() {
               <div className="p-4 rounded-full bg-academia-sage-green/20 border border-academia-sage-green/30 w-fit mx-auto mb-6">
                 <BookOpen size={72} className="text-academia-sage-green" />
               </div>
-              <h3 className="text-3xl text-academia-light mb-4">
+              <h3 className="text-[2rem] text-academia-light mb-4">
                 Loading...
               </h3>
             </div>
@@ -261,10 +261,10 @@ export default function Home() {
               <div className="p-4 rounded-full bg-academia-sage-green/20 border border-academia-sage-green/30 w-fit mx-auto mb-6">
                 <BookOpen size={72} className="text-academia-sage-green" />
               </div>
-              <h3 className="text-3xl text-academia-light mb-4">
+              <h3 className="text-[2rem] text-academia-light mb-4">
                 Your Library Awaits
               </h3>
-              <p className="text-academia-muted mb-8 text-lg max-w-md mx-auto">
+              <p className="text-academia-muted mb-8 text-[1.8rem] max-w-md mx-auto">
                 Add your first volume to your library 
               </p>
               <button
@@ -280,10 +280,10 @@ export default function Home() {
               <div className="p-4 rounded-full bg-academia-orange/20 border border-academia-green/30 w-fit mx-auto mb-6">
                 <Filter size={72} className="text-academia-sage-green" />
               </div>
-              <h3 className="text-3xl text-academia-light mb-4">
+              <h3 className="text-[2rem] text-academia-light mb-4">
                 No Volumes Found
               </h3>
-              <p className="text-academia-muted mb-8 text-lg max-w-md mx-auto">
+              <p className="text-academia-muted mb-8 text-[1.8rem] max-w-md mx-auto">
                 This filter reveals no treasures. Try a different selection or expand your collection
               </p>
               <button
@@ -308,7 +308,7 @@ export default function Home() {
 
                 return Object.entries(groupedBooks).map(([author, authorBooks]) => (
                   <div key={author} className="space-y-4">
-                    <h3 className="text-3xl text-academia-sage-green border-b border-academia-green/30 pb-2">
+                    <h3 className="text-[2.5rem] text-academia-sage-green border-b border-academia-green/30 pb-2">
                       {author}
                     </h3>
                     <div className="flex flex-wrap gap-4">
