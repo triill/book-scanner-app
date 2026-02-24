@@ -67,7 +67,7 @@
 body {
   background: #0b0d11;
   color: #829ea2;
-  font-family: var(--font-poiret), sans-serif;
+  font-family: var(--font-explora), cursive;
   line-height: 1.6;
 }
 
@@ -95,7 +95,7 @@ body {
 }
 
 .font-heading {
-  font-family: var(--font-poiret), sans-serif;
+  font-family: var(--font-explora), cursive;
 }
 
 .font-body {
@@ -103,7 +103,7 @@ body {
 }
 
 .font-accent {
-  font-family: var(--font-poiret), sans-serif;
+  font-family: var(--font-explora), cursive;
 }
 
 .font-signature {

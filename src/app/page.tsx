@@ -96,7 +96,7 @@ export default function Home() {
         {error && (
           <div className="mb-6 p-4 bg-red-900/20 border border-red-500/50 rounded-xl">
             <div className="flex items-center justify-between">
-              <p className="text-red-400 font-body">{error}</p>
+              <p className="text-red-400">{error}</p>
               <button
                 onClick={() => setError(null)}
                 className="text-red-400 hover:text-red-300 transition-colors"
@@ -117,7 +117,7 @@ export default function Home() {
               Bibliotheca
             </h1>
           </div>
-          <p className="text-academia-muted max-w-2xl mx-auto text-lg font-body leading-relaxed">
+          <p className="text-academia-muted max-w-2xl mx-auto text-lg leading-relaxed">
             Personal library 
           </p>
         </div>
@@ -132,19 +132,19 @@ export default function Home() {
           <div className={`grid grid-cols-2 md:grid-cols-4 gap-6 mb-6 ${!isClient || books.length === 0 ? 'opacity-0 pointer-events-none' : ''}`}>
             <div className="bg-academia-card p-6 rounded-xl border border-academia text-center hover:border-academia-orange/50 transition-all duration-300">
               <div className="text-3xl font-signature text-academia-orange mb-2 border-2 border-academia-orange/30 rounded-lg py-2 px-4 inline-block">{isClient ? stats.totalBooks : 0}</div>
-              <div className="text-sm text-academia-muted font-body">Total Volumes</div>
+              <div className="text-sm text-academia-muted">Total Volumes</div>
             </div>
             <div className="bg-academia-card p-6 rounded-xl border border-academia text-center hover:border-academia-green/50 transition-all duration-300">
               <div className="text-3xl font-signature text-academia-orange mb-2 border-2 border-academia-orange/30 rounded-lg py-2 px-4 inline-block">{isClient ? stats.fiveStarBooks : 0}</div>
-              <div className="text-sm text-academia-muted font-body">Masterpieces</div>
+              <div className="text-sm text-academia-muted">Masterpieces</div>
             </div>
             <div className="bg-academia-card p-6 rounded-xl border border-academia text-center hover:border-academia-green/50 transition-all duration-300">
               <div className="text-3xl font-signature text-academia-orange mb-2 border-2 border-academia-orange/30 rounded-lg py-2 px-4 inline-block">{isClient ? stats.readBooks : 0}</div>
-              <div className="text-sm text-academia-muted font-body">Completed</div>
+              <div className="text-sm text-academia-muted">Completed</div>
             </div>
             <div className="bg-academia-card p-6 rounded-xl border border-academia text-center hover:border-academia-green/50 transition-all duration-300">
               <div className="text-3xl font-signature text-academia-orange mb-2 border-2 border-academia-orange/30 rounded-lg py-2 px-4 inline-block">{isClient ? stats.unreadBooks : 0}</div>
-              <div className="text-sm text-academia-muted font-body">Unread</div>
+              <div className="text-sm text-academia-muted">Unread</div>
             </div>
           </div>
         </div>
@@ -161,7 +161,7 @@ export default function Home() {
                 placeholder="Search by title or author..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-10 pr-4 py-3 bg-academia-card border border-academia rounded-xl text-academia-light placeholder-academia-muted focus:outline-none focus:border-academia-green focus:ring-2 focus:ring-academia-green/20 font-body"
+                className="w-full pl-10 pr-4 py-3 bg-academia-card border border-academia rounded-xl text-academia-light placeholder-academia-muted focus:outline-none focus:border-academia-green focus:ring-2 focus:ring-academia-green/20"
               />
               {searchQuery && (
                 <button
@@ -181,7 +181,7 @@ export default function Home() {
             <div className="flex flex-wrap gap-2">
               <button
                 onClick={() => setShowAddForm(true)}
-                className="flex items-center gap-3 px-6 py-3 bg-academia-green text-academia-light rounded-xl hover:bg-academia-green/80 transition-all duration-300 border border-academia-green/30 font-heading font-semibold shadow-lg hover:shadow-academia-green/20"
+                className="flex items-center gap-3 px-6 py-3 bg-academia-green text-academia-light rounded-xl hover:bg-academia-green/80 transition-all duration-300 border border-academia-green/30 font-semibold shadow-lg hover:shadow-academia-green/20"
               >
                 <Plus size={22} />
                 Add Volume
@@ -189,7 +189,7 @@ export default function Home() {
               
               <button
                 onClick={() => setFilter('five-star')}
-                className={`flex items-center gap-3 px-5 py-2 rounded-xl transition-all duration-300 font-heading font-medium ${
+                className={`flex items-center gap-3 px-5 py-2 rounded-xl transition-all duration-300 font-medium ${
                   filter === 'five-star'
                     ? 'bg-academia-green/20 text-academia-sage-green border border-academia-green/50'
                     : 'bg-academia-card text-academia-muted hover:text-academia-light hover:bg-academia-card/80 border border-academia'
@@ -205,7 +205,7 @@ export default function Home() {
               <select
                 value={filter}
                 onChange={(e) => setFilter(e.target.value as 'all' | 'five-star' | BookGenre | 'unread' | 'read')}
-                className="px-4 py-2 bg-academia-card border border-academia rounded-xl text-academia-light focus:outline-none focus:border-academia-green focus:ring-2 focus:ring-academia-green/20 font-body"
+                className="px-4 py-2 bg-academia-card border border-academia rounded-xl text-academia-light focus:outline-none focus:border-academia-green focus:ring-2 focus:ring-academia-green/20"
               >
                 <option value="all">All Books</option>
                 <option value="unread">Unread</option>
@@ -231,7 +231,7 @@ export default function Home() {
             {searchQuery ? (
               <button
                 onClick={() => setSearchQuery('')}
-                className="flex items-center gap-3 px-5 py-2 text-academia-sage-green hover:text-academia-light hover:bg-academia-green/10 rounded-xl transition-all duration-300 border border-academia-green/30 font-heading font-medium"
+                className="flex items-center gap-3 px-5 py-2 text-academia-sage-green hover:text-academia-light hover:bg-academia-green/10 rounded-xl transition-all duration-300 border border-academia-green/30 font-medium"
               >
                 <X size={20} />
                 Clear Search
@@ -239,7 +239,7 @@ export default function Home() {
             ) : (
               <button
                 onClick={() => setFilter('all')}
-                className={`flex items-center gap-3 px-5 py-2 text-academia-sage-green hover:text-academia-light hover:bg-academia-green/10 rounded-xl transition-all duration-300 border border-academia-green/30 font-heading font-medium ${filter !== 'five-star' ? 'opacity-0 pointer-events-none' : ''}`}
+                className={`flex items-center gap-3 px-5 py-2 text-academia-sage-green hover:text-academia-light hover:bg-academia-green/10 rounded-xl transition-all duration-300 border border-academia-green/30 font-medium ${filter !== 'five-star' ? 'opacity-0 pointer-events-none' : ''}`}
               >
                 <BookOpen size={20} />
                 Back to All Volumes
@@ -264,12 +264,12 @@ export default function Home() {
               <h3 className="text-3xl font-signature text-academia-light mb-4">
                 Your Library Awaits
               </h3>
-              <p className="text-academia-muted mb-8 text-lg font-body max-w-md mx-auto">
+              <p className="text-academia-muted mb-8 text-lg max-w-md mx-auto">
                 Add your first volume to your library 
               </p>
               <button
                 onClick={() => setShowAddForm(true)}
-                className="inline-flex items-center gap-3 px-8 py-4 bg-academia-green text-academia-light rounded-xl hover:bg-academia-green/80 transition-all duration-300 border border-academia-green/30 font-heading font-semibold shadow-lg hover:shadow-academia-green/20"
+                className="inline-flex items-center gap-3 px-8 py-4 bg-academia-green text-academia-light rounded-xl hover:bg-academia-green/80 transition-all duration-300 border border-academia-green/30 font-semibold shadow-lg hover:shadow-academia-green/20"
               >
                 <Plus size={24} />
                 Add Your First Volume
@@ -283,12 +283,12 @@ export default function Home() {
               <h3 className="text-3xl font-signature text-academia-light mb-4">
                 No Volumes Found
               </h3>
-              <p className="text-academia-muted mb-8 text-lg font-body max-w-md mx-auto">
+              <p className="text-academia-muted mb-8 text-lg max-w-md mx-auto">
                 This filter reveals no treasures. Try a different selection or expand your collection
               </p>
               <button
                 onClick={() => setFilter('all')}
-                className="inline-flex items-center gap-3 px-8 py-4 bg-academia-orange text-academia-light rounded-xl hover:bg-academia-orange/80 transition-all duration-300 border border-academia-green/30 font-heading font-semibold shadow-lg hover:shadow-academia-green/20"
+                className="inline-flex items-center gap-3 px-8 py-4 bg-academia-orange text-academia-light rounded-xl hover:bg-academia-orange/80 transition-all duration-300 border border-academia-green/30 font-semibold shadow-lg hover:shadow-academia-green/20"
               >
                 Show All Volumes
               </button>

@@ -35,7 +35,7 @@ export default function BookCard({ book, onEdit }: BookCardProps) {
           />
         ) : (
           <div className="w-full h-full bg-academia-dark border-b border-academia flex items-center justify-center group-hover:border-academia-green/30 transition-colors duration-300">
-            <span className="text-academia-muted text-sm font-body">No Cover</span>
+            <span className="text-academia-muted text-sm">No Cover</span>
           </div>
         )}
       </div>
@@ -63,16 +63,16 @@ export default function BookCard({ book, onEdit }: BookCardProps) {
 
         {/* Genre and Status */}
         <div className="flex flex-wrap items-center gap-1.5 mb-3">
-          <span className="px-2 py-0.5 bg-academia-green/20 text-academia-green text-xs rounded-full border border-academia-green/30 font-body">
+          <span className="px-2 py-0.5 bg-academia-green/20 text-academia-green text-xs rounded-full border border-academia-green/30">
             {book.genre}
           </span>
-          <span className={`px-2 py-0.5 text-xs rounded-full border font-body ${
+          <span className={`px-2 py-0.5 text-xs rounded-full border ${
             book.status === 'read' ? 'bg-academia-orange/20 text-academia-orange border-academia-orange/30' :
             'bg-academia-muted/20 text-academia-muted border-academia-muted/30'
           }`}>
             {book.status.charAt(0).toUpperCase() + book.status.slice(1)}
           </span>
-          <span className="px-2 py-0.5 bg-academia-green/20 text-academia-sage-green text-xs rounded-full border border-academia-green/30 font-body">
+          <span className="px-2 py-0.5 bg-academia-green/20 text-academia-sage-green text-xs rounded-full border border-academia-green/30">
             {book.format.charAt(0).toUpperCase() + book.format.slice(1)}
           </span>
         </div>
@@ -92,7 +92,7 @@ export default function BookCard({ book, onEdit }: BookCardProps) {
                 <Circle key={value} size={8} className={iconClass} stroke="currentColor" strokeWidth={1.5} />
               );
             })}
-            <span className="ml-1.5 text-sm font-heading text-academia-light">
+            <span className="ml-1.5 text-sm text-academia-light">
               {book.rating % 1 === 0 ? book.rating : book.rating.toFixed(1)}/5
             </span>
           </div>
@@ -104,15 +104,15 @@ export default function BookCard({ book, onEdit }: BookCardProps) {
           </p>
         )}
 
-        <div className="space-y-0.5 text-xs text-academia-muted font-body mb-3">
+        <div className="space-y-0.5 text-xs text-academia-muted mb-3">
           {book.publishedDate && (
-            <p className="truncate"><span className="font-heading font-semibold text-academia-sage-green">Published:</span> {book.publishedDate}</p>
+            <p className="truncate"><span className="font-semibold text-academia-sage-green">Published:</span> {book.publishedDate}</p>
           )}
           {book.publisher && (
-            <p className="truncate"><span className="font-heading font-semibold text-academia-sage-green">Publisher:</span> {book.publisher}</p>
+            <p className="truncate"><span className="font-semibold text-academia-sage-green">Publisher:</span> {book.publisher}</p>
           )}
           {book.pageCount && (
-            <p><span className="font-heading font-semibold text-academia-sage-green">Pages:</span> {book.pageCount}</p>
+            <p><span className="font-semibold text-academia-sage-green">Pages:</span> {book.pageCount}</p>
           )}
         </div>
 
@@ -122,7 +122,7 @@ export default function BookCard({ book, onEdit }: BookCardProps) {
               {book.categories.slice(0, 2).map((category, index) => (
                 <span
                   key={index}
-                  className="px-2 py-0.5 bg-academia-orange/20 text-academia-orange text-xs rounded-full border border-academia-orange/30 font-body"
+                  className="px-2 py-0.5 bg-academia-orange/20 text-academia-orange text-xs rounded-full border border-academia-orange/30"
                 >
                   {category}
                 </span>
@@ -134,7 +134,7 @@ export default function BookCard({ book, onEdit }: BookCardProps) {
         {book.previewLink && (
           <button
             onClick={handlePreview}
-            className="mt-auto flex items-center gap-1.5 text-academia-sage-green hover:text-academia-light transition-all duration-300 text-sm font-heading font-medium border border-academia-green/30 px-3 py-1.5 rounded-md hover:bg-academia-green/10 w-full justify-center"
+            className="mt-auto flex items-center gap-1.5 text-academia-sage-green hover:text-academia-light transition-all duration-300 text-sm font-medium border border-academia-green/30 px-3 py-1.5 rounded-md hover:bg-academia-green/10 w-full justify-center"
           >
             <ExternalLink size={14} />
             Preview

@@ -135,7 +135,7 @@ export default function EditBookForm({ book, onUpdateBook, onCancel }: EditBookF
           <button
             type="button"
             onClick={() => handleInputChange('rating', 0)}
-            className="ml-3 text-academia-muted hover:text-academia-light font-body text-sm"
+            className="ml-3 text-academia-muted hover:text-academia-light text-sm"
           >
             Clear
           </button>
@@ -162,7 +162,7 @@ export default function EditBookForm({ book, onUpdateBook, onCancel }: EditBookF
           {submitError && (
             <div className="p-4 bg-red-900/20 border border-red-500/50 rounded-xl">
               <div className="flex items-center justify-between">
-                <p className="text-red-400 font-body">{submitError}</p>
+                <p className="text-red-400">{submitError}</p>
                 <button
                   type="button"
                   onClick={() => setSubmitError(null)}
@@ -176,7 +176,7 @@ export default function EditBookForm({ book, onUpdateBook, onCancel }: EditBookF
 
           {/* Title */}
           <div>
-            <label htmlFor="title" className="block text-lg font-heading font-semibold text-academia-light mb-3">
+            <label htmlFor="title" className="block text-lg font-semibold text-academia-light mb-3">
               Title *
             </label>
             <input
@@ -184,17 +184,17 @@ export default function EditBookForm({ book, onUpdateBook, onCancel }: EditBookF
               id="title"
               value={formData.title}
               onChange={(e) => handleInputChange('title', e.target.value)}
-              className={`w-full px-4 py-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-academia-green/50 text-academia-light bg-academia-dark font-body ${
+              className={`w-full px-4 py-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-academia-green/50 text-academia-light bg-academia-dark ${
                 errors.title ? 'border-red-500' : 'border-academia'
               }`}
               placeholder="Enter the title of your literary treasure"
             />
-            {errors.title && <p className="text-red-400 text-sm mt-2 font-body">{errors.title}</p>}
+            {errors.title && <p className="text-red-400 text-sm mt-2">{errors.title}</p>}
           </div>
 
           {/* Authors */}
           <div>
-            <label htmlFor="authors" className="block text-lg font-heading font-semibold text-academia-light mb-3">
+            <label htmlFor="authors" className="block text-lg font-semibold text-academia-light mb-3">
               Authors *
             </label>
             <input
@@ -202,18 +202,18 @@ export default function EditBookForm({ book, onUpdateBook, onCancel }: EditBookF
               id="authors"
               value={formData.authors}
               onChange={(e) => handleInputChange('authors', e.target.value)}
-              className={`w-full px-4 py-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-academia-green/50 text-academia-light bg-academia-dark font-body ${
+              className={`w-full px-4 py-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-academia-green/50 text-academia-light bg-academia-dark ${
                 errors.authors ? 'border-red-500' : 'border-academia'
               }`}
               placeholder="Enter authors (comma-separated)"
             />
-            {errors.authors && <p className="text-red-400 text-sm mt-2 font-body">{errors.authors}</p>}
+            {errors.authors && <p className="text-red-400 text-sm mt-2">{errors.authors}</p>}
           </div>
 
           {/* Book Cover */}
           <div className="space-y-4">
             <div>
-              <label htmlFor="manualImageUrl" className="block text-lg font-heading font-semibold text-academia-light mb-3">
+              <label htmlFor="manualImageUrl" className="block text-lg font-semibold text-academia-light mb-3">
                 Book Cover URL (Optional)
               </label>
               <input
@@ -221,17 +221,17 @@ export default function EditBookForm({ book, onUpdateBook, onCancel }: EditBookF
                 id="manualImageUrl"
                 value={manualImageUrl}
                 onChange={(e) => handleManualImageUrl(e.target.value)}
-                className="w-full px-4 py-3 border border-academia rounded-xl focus:outline-none focus:ring-2 focus:ring-academia-green/50 text-academia-light bg-academia-dark font-body"
+                className="w-full px-4 py-3 border border-academia rounded-xl focus:outline-none focus:ring-2 focus:ring-academia-green/50 text-academia-light bg-academia-dark"
                 placeholder="Paste image URL from Amazon or Goodreads"
               />
-              <p className="text-xs text-academia-muted mt-2 font-body">
+              <p className="text-xs text-academia-muted mt-2">
                 Right-click on a book cover &rarr; &quot;Copy Image Address&quot;
               </p>
             </div>
 
             {bookCover && (
               <div className="mt-3">
-                <p className="text-academia-green text-sm mb-2 font-body">Cover preview:</p>
+                <p className="text-academia-green text-sm mb-2">Cover preview:</p>
                 <div className="relative w-32 h-44 border-2 border-academia-green/50 rounded-lg overflow-hidden">
                   <Image 
                     src={bookCover} 
@@ -247,14 +247,14 @@ export default function EditBookForm({ book, onUpdateBook, onCancel }: EditBookF
 
           {/* Genre */}
           <div>
-            <label htmlFor="genre" className="block text-lg font-heading font-semibold text-academia-light mb-3">
+            <label htmlFor="genre" className="block text-lg font-semibold text-academia-light mb-3">
               Genre *
             </label>
             <select
               id="genre"
               value={formData.genre}
               onChange={(e) => handleInputChange('genre', e.target.value as BookGenre)}
-              className="w-full px-4 py-3 border border-academia rounded-xl focus:outline-none focus:ring-2 focus:ring-academia-green/50 text-academia-light bg-academia-dark font-body"
+              className="w-full px-4 py-3 border border-academia rounded-xl focus:outline-none focus:ring-2 focus:ring-academia-green/50 text-academia-light bg-academia-dark"
             >
               <option value="Romance">Romance</option>
               <option value="Dark Romance">Dark Romance</option>
@@ -266,14 +266,14 @@ export default function EditBookForm({ book, onUpdateBook, onCancel }: EditBookF
           {/* Status and Format */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <label htmlFor="status" className="block text-lg font-heading font-semibold text-academia-light mb-3">
+              <label htmlFor="status" className="block text-lg font-semibold text-academia-light mb-3">
                 Status
               </label>
               <select
                 id="status"
                 value={formData.status}
                 onChange={(e) => handleInputChange('status', e.target.value as BookStatus)}
-                className="w-full px-4 py-3 border border-academia rounded-xl focus:outline-none focus:ring-2 focus:ring-academia-green/50 text-academia-light bg-academia-dark font-body"
+                className="w-full px-4 py-3 border border-academia rounded-xl focus:outline-none focus:ring-2 focus:ring-academia-green/50 text-academia-light bg-academia-dark"
               >
                 <option value="unread">Unread</option>
                 <option value="read">Read</option>
@@ -281,14 +281,14 @@ export default function EditBookForm({ book, onUpdateBook, onCancel }: EditBookF
             </div>
 
             <div>
-              <label htmlFor="format" className="block text-lg font-heading font-semibold text-academia-light mb-3">
+              <label htmlFor="format" className="block text-lg font-semibold text-academia-light mb-3">
                 Format
               </label>
               <select
                 id="format"
                 value={formData.format}
                 onChange={(e) => handleInputChange('format', e.target.value as BookFormat)}
-                className="w-full px-4 py-3 border border-academia rounded-xl focus:outline-none focus:ring-2 focus:ring-academia-green/50 text-academia-light bg-academia-dark font-body"
+                className="w-full px-4 py-3 border border-academia rounded-xl focus:outline-none focus:ring-2 focus:ring-academia-green/50 text-academia-light bg-academia-dark"
               >
                 <option value="physical">Physical</option>
                 <option value="kindle">Kindle</option>
@@ -299,16 +299,16 @@ export default function EditBookForm({ book, onUpdateBook, onCancel }: EditBookF
 
           {/* Rating */}
           <div>
-            <label className="block text-lg font-heading font-semibold text-academia-light mb-3">
+            <label className="block text-lg font-semibold text-academia-light mb-3">
               Rating {formData.status === 'read' && '*'}
             </label>
             {renderStars()}
-            {errors.rating && <p className="text-red-400 text-sm mt-2 font-body">{errors.rating}</p>}
+            {errors.rating && <p className="text-red-400 text-sm mt-2">{errors.rating}</p>}
           </div>
 
           {/* Description */}
           <div>
-            <label htmlFor="description" className="block text-lg font-heading font-semibold text-academia-light mb-3">
+            <label htmlFor="description" className="block text-lg font-semibold text-academia-light mb-3">
               Description
             </label>
             <textarea
@@ -326,14 +326,14 @@ export default function EditBookForm({ book, onUpdateBook, onCancel }: EditBookF
             <button
               type="button"
               onClick={onCancel}
-              className="px-6 py-3 text-academia-muted bg-academia-card border border-academia rounded-xl hover:bg-academia-card/80 hover:text-academia-light transition-all duration-300 font-heading font-medium"
+              className="px-6 py-3 text-academia-muted bg-academia-card border border-academia rounded-xl hover:bg-academia-card/80 hover:text-academia-light transition-all duration-300 font-medium"
             >
               Cancel
             </button>
             <button
               type="submit"
               disabled={isSubmitting}
-              className="px-8 py-3 bg-academia-bronze text-academia-light rounded-xl hover:bg-academia-bronze/80 transition-all duration-300 flex items-center gap-3 font-heading font-semibold border border-academia-green/30 shadow-lg hover:shadow-academia-green/20 disabled:opacity-50"
+              className="px-8 py-3 bg-academia-bronze text-academia-light rounded-xl hover:bg-academia-bronze/80 transition-all duration-300 flex items-center gap-3 font-semibold border border-academia-green/30 shadow-lg hover:shadow-academia-green/20 disabled:opacity-50"
             >
               <Edit size={22} />
               {isSubmitting ? 'Updating...' : 'Update Volume'}
