@@ -148,7 +148,7 @@ export default function EditBookForm({ book, onUpdateBook, onCancel }: EditBookF
     <div className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4 z-50">
       <div className="bg-academia-dark rounded-2xl shadow-2xl border border-academia max-w-2xl w-full max-h-[90vh] overflow-y-auto">
         <div className="flex items-center justify-between p-8 border-b border-academia">
-          <h2 className="text-4xl font-signature text-academia-light">Edit Volume</h2>
+          <h2 className="text-4xl text-academia-light">Edit Volume</h2>
           <button
             onClick={onCancel}
             className="text-academia-muted hover:text-academia-light transition-colors p-2 rounded-lg hover:bg-academia-green/10"

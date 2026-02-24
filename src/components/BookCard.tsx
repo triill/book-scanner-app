@@ -43,7 +43,7 @@ export default function BookCard({ book, onEdit }: BookCardProps) {
       {/* Book Details */}
       <div className="flex-1 p-4 flex flex-col">
         <div className="flex justify-between items-start mb-2">
-          <h3 className="text-xl font-signature text-academia-light group-hover:text-academia-sage-green transition-colors duration-300 flex-1 pr-2 line-clamp-2">
+          <h3 className="text-xl text-academia-light group-hover:text-academia-sage-green transition-colors duration-300 flex-1 pr-2 line-clamp-2">
             {book.title}
           </h3>
           {onEdit && (
@@ -57,7 +57,7 @@ export default function BookCard({ book, onEdit }: BookCardProps) {
           )}
         </div>
 
-        <p className="text-academia-muted mb-3 font-signature text-base line-clamp-1">
+        <p className="text-academia-muted mb-3 text-base line-clamp-1">
           by {book.authors.join(', ')}
         </p>
 
