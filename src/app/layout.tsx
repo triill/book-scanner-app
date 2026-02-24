@@ -37,6 +37,7 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={`${monsieurLaDoulaise.variable} ${poiretOne.variable} ${explora.variable} antialiased`}
+        suppressHydrationWarning
       >
         {children}
       </body>

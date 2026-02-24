@@ -9,6 +9,27 @@ interface BookCardProps {
   onEdit?: (book: Book) => void;
 }
 
+function CornerSwirl() {
+  return (
+    <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path
+        d="M2 38 C2 20, 8 8, 20 4 C14 10, 10 18, 10 26 C10 16, 16 10, 26 8 C18 12, 14 20, 14 30"
+        stroke="currentColor"
+        strokeWidth="1.2"
+        strokeLinecap="round"
+        fill="none"
+      />
+      <path
+        d="M4 34 C6 22, 10 14, 18 8"
+        stroke="currentColor"
+        strokeWidth="0.8"
+        strokeLinecap="round"
+        fill="none"
+      />
+    </svg>
+  );
+}
+
 export default function BookCard({ book, onEdit }: BookCardProps) {
 
   const handlePreview = () => {
@@ -18,9 +39,15 @@ export default function BookCard({ book, onEdit }: BookCardProps) {
   };
 
   return (
-    <div className="bg-academia-card rounded-lg border-2 border-academia-green overflow-hidden hover:border-academia-green/50 hover:shadow-md hover:shadow-academia-green/10 transition-all duration-300 group flex flex-col h-full max-w-[320px]">
+    <div className="ornate-card bg-academia-card rounded-lg overflow-hidden hover:shadow-md transition-all duration-300 group flex flex-col h-full max-w-[320px]">
+      <div className="ornate-inner" />
+      <div className="corner-tl"><CornerSwirl /></div>
+      <div className="corner-tr"><CornerSwirl /></div>
+      <div className="corner-bl"><CornerSwirl /></div>
+      <div className="corner-br"><CornerSwirl /></div>
+
       {/* Book Cover */}
-      <div className="w-full h-80 relative bg-gradient-to-br from-academia-dark to-academia-card flex-shrink-0">
+      <div className="w-full h-80 relative bg-gradient-to-br from-[var(--ink)] to-[var(--tobacco)] flex-shrink-0">
         {book.imageUrl ? (
           <Image
             src={book.imageUrl}
@@ -34,22 +61,22 @@ export default function BookCard({ book, onEdit }: BookCardProps) {
             }}
           />
         ) : (
-          <div className="w-full h-full bg-academia-dark border-b border-academia flex items-center justify-center group-hover:border-academia-green/30 transition-colors duration-300">
+          <div className="w-full h-full bg-academia-dark border-b border-academia flex items-center justify-center group-hover:border-[var(--umber)]/30 transition-colors duration-300">
             <span className="text-academia-muted text-[1.8rem]">No Cover</span>
           </div>
         )}
       </div>
 
       {/* Book Details */}
-      <div className="flex-1 p-4 flex flex-col">
+      <div className="flex-1 p-4 flex flex-col relative z-[2]">
         <div className="flex justify-between items-start mb-2">
-          <h3 className="text-[2.25rem] text-academia-light group-hover:text-academia-sage-green transition-colors duration-300 flex-1 pr-2 line-clamp-2">
+          <h3 className="text-[2.25rem] text-academia-light group-hover:text-[var(--gold)] transition-colors duration-300 flex-1 pr-2 line-clamp-2">
             {book.title}
           </h3>
           {onEdit && (
             <button
               onClick={() => onEdit(book)}
-              className="text-academia-muted hover:text-academia-sage-green transition-all duration-300 p-1 rounded-lg hover:bg-academia-green/10 flex-shrink-0"
+              className="text-academia-muted hover:text-[var(--gold)] transition-all duration-300 p-1 rounded-lg hover:bg-[var(--umber)]/10 flex-shrink-0"
               title="Edit volume"
             >
               <Edit size={16} />
@@ -63,16 +90,16 @@ export default function BookCard({ book, onEdit }: BookCardProps) {
 
         {/* Genre and Status */}
         <div className="flex flex-wrap items-center gap-1.5 mb-3">
-          <span className="px-2 py-0.5 bg-academia-green/20 text-academia-green text-[1.2rem] rounded-full border border-academia-green/30">
+          <span className="px-2 py-0.5 bg-[var(--mahogany)] text-[var(--umber)] text-[1.2rem] rounded-full border border-[var(--umber)]/30">
             {book.genre}
           </span>
           <span className={`px-2 py-0.5 text-[1.2rem] rounded-full border ${
-            book.status === 'read' ? 'bg-academia-orange/20 text-academia-orange border-academia-orange/30' :
-            'bg-academia-muted/20 text-academia-muted border-academia-muted/30'
+            book.status === 'read' ? 'bg-[var(--umber)]/20 text-[var(--umber)] border-[var(--umber)]/30' :
+            'bg-[var(--brume)]/20 text-[var(--brume)] border-[var(--brume)]/30'
           }`}>
             {book.status.charAt(0).toUpperCase() + book.status.slice(1)}
           </span>
-          <span className="px-2 py-0.5 bg-academia-green/20 text-academia-sage-green text-[1.2rem] rounded-full border border-academia-green/30">
+          <span className="px-2 py-0.5 bg-[var(--mahogany)] text-academia-sage-green text-[1.2rem] rounded-full border border-[var(--umber)]/30">
             {book.format.charAt(0).toUpperCase() + book.format.slice(1)}
           </span>
         </div>
@@ -84,7 +111,7 @@ export default function BookCard({ book, onEdit }: BookCardProps) {
               const isFilled = book.rating! >= value;
               const isWhole = value % 1 === 0;
               const iconClass = `transition-colors duration-300 ${
-                isFilled ? 'text-academia-orange fill-current' : 'text-academia-muted'
+                isFilled ? 'text-[var(--gold)] fill-current' : 'text-academia-muted'
               }`;
               return isWhole ? (
                 <Star key={value} size={14} className={iconClass} />
@@ -99,20 +126,20 @@ export default function BookCard({ book, onEdit }: BookCardProps) {
         )}
 
         {book.description && (
-          <p className="text-academia-light text-[1.8rem] mb-3 line-clamp-2 font-body leading-relaxed">
+          <p className="text-academia-light text-[1.2rem] mb-3 line-clamp-2 font-body leading-relaxed">
             {book.description}
           </p>
         )}
 
         <div className="space-y-0.5 text-[1.8rem] text-academia-muted mb-3">
           {book.publishedDate && (
-            <p className="truncate"><span className="font-semibold text-academia-sage-green">Published:</span> {book.publishedDate}</p>
+            <p className="truncate"><span className="font-semibold text-[var(--gold)]">Published:</span> {book.publishedDate}</p>
           )}
           {book.publisher && (
-            <p className="truncate"><span className="font-semibold text-academia-sage-green">Publisher:</span> {book.publisher}</p>
+            <p className="truncate"><span className="font-semibold text-[var(--gold)]">Publisher:</span> {book.publisher}</p>
           )}
           {book.pageCount && (
-            <p><span className="font-semibold text-academia-sage-green">Pages:</span> {book.pageCount}</p>
+            <p><span className="font-semibold text-[var(--gold)]">Pages:</span> {book.pageCount}</p>
           )}
         </div>
 
@@ -122,7 +149,7 @@ export default function BookCard({ book, onEdit }: BookCardProps) {
               {book.categories.slice(0, 2).map((category, index) => (
                 <span
                   key={index}
-                  className="px-2 py-0.5 bg-academia-orange/20 text-academia-orange text-[1.2rem] rounded-full border border-academia-orange/30"
+                  className="px-2 py-0.5 bg-[var(--umber)]/20 text-[var(--umber)] text-[1.2rem] rounded-full border border-[var(--umber)]/30"
                 >
                   {category}
                 </span>
@@ -134,7 +161,7 @@ export default function BookCard({ book, onEdit }: BookCardProps) {
         {book.previewLink && (
           <button
             onClick={handlePreview}
-            className="mt-auto flex items-center gap-1.5 text-academia-sage-green hover:text-academia-light transition-all duration-300 text-[1.8rem] font-medium border border-academia-green/30 px-3 py-1.5 rounded-md hover:bg-academia-green/10 w-full justify-center"
+            className="mt-auto flex items-center gap-1.5 text-[var(--gold)] hover:text-academia-light transition-all duration-300 text-[1.8rem] font-medium border border-[var(--umber)]/30 px-3 py-1.5 rounded-md hover:bg-[var(--umber)]/10 w-full justify-center"
           >
             <ExternalLink size={14} />
             Preview

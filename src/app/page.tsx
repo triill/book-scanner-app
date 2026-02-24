@@ -11,6 +11,7 @@ import { BookOpen, Plus, Star, Filter, X, Search, ArrowUp } from 'lucide-react';
 export default function Home() {
   const { 
     books, 
+    isLoading,
     addBook, 
     updateBook,
     getStats,
@@ -22,13 +23,10 @@ export default function Home() {
   const [editingBook, setEditingBook] = useState<Book | null>(null);
   const [filter, setFilter] = useState<'all' | 'five-star' | BookGenre | 'unread' | 'read'>('all');
   const [searchQuery, setSearchQuery] = useState('');
-  const [isClient, setIsClient] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [showBackToTop, setShowBackToTop] = useState(false);
 
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
+  const hasBooks = !isLoading && books.length > 0;
 
   useEffect(() => {
     const handleScroll = () => setShowBackToTop(window.scrollY > 400);
@@ -60,17 +58,13 @@ export default function Home() {
     setEditingBook(null);
   };
 
-
-
   const getFilteredBooks = () => {
     let filteredBooks = books;
     
-    // Apply search filter first
     if (searchQuery.trim()) {
       filteredBooks = searchBooks(searchQuery);
     }
     
-    // Then apply category filter
     switch (filter) {
       case 'five-star':
         return filteredBooks.filter(book => book.rating === 5);
@@ -90,7 +84,7 @@ export default function Home() {
   const filteredBooks = getFilteredBooks();
 
   return (
-    <div className="min-h-screen bg-academia-dark">
+    <div className="min-h-screen bg-academia-dark" suppressHydrationWarning>
       <div className="container mx-auto px-4 py-8">
         {/* Error Display */}
         {error && (
@@ -107,50 +101,46 @@ export default function Home() {
           </div>
         )}
 
-        {/* Header */}
-        <div className="text-center mb-12">
-          <div className="flex items-center justify-center gap-4 mb-6">
-            <div className="p-3 rounded-full bg-academia-blood-red/20 border border-academia-blood-red/30">
-              <BookOpen size={36} className="text-academia-blood-red" />
-            </div>
-            <h1 className="text-[4rem] font-signature text-academia-light tracking-wide">
+        {/* Hero Header */}
+        <div className="hero-section rounded-2xl mb-12 py-20 px-4">
+          <div className="hero-content text-center">
+            <h1 className="text-[5rem] font-signature text-academia-light tracking-wide mb-4 drop-shadow-lg">
               Bibliotheca
             </h1>
+            <p className="text-academia-muted max-w-2xl mx-auto text-[1.8rem] leading-relaxed">
+              Personal library
+            </p>
           </div>
-          <p className="text-academia-muted max-w-2xl mx-auto text-[1.8rem] leading-relaxed">
-            Personal library 
-          </p>
         </div>
 
         {/* Stats Section */}
         <div className="mb-8">
           <div className="flex items-center justify-between mb-6">
             <h2 className="text-[2rem] text-academia-light">Library Statistics</h2>
-           
           </div>
           
-          <div className={`grid grid-cols-2 md:grid-cols-4 gap-6 mb-6 ${!isClient || books.length === 0 ? 'opacity-0 pointer-events-none' : ''}`}>
-            <div className="bg-academia-card p-6 rounded-xl border border-academia text-center hover:border-academia-orange/50 transition-all duration-300">
-              <div className="text-[2rem] font-signature text-academia-orange mb-2 border-2 border-academia-orange/30 rounded-lg py-2 px-4 inline-block">{isClient ? stats.totalBooks : 0}</div>
+          <div className={`grid grid-cols-2 md:grid-cols-4 gap-6 mb-6 transition-opacity duration-300 ${!hasBooks ? 'opacity-0 pointer-events-none' : ''}`}>
+            <div className="bg-academia-card p-6 rounded-xl border border-academia text-center hover:border-[var(--umber)]/50 transition-all duration-300">
+              <div className="text-[2rem] font-signature text-[var(--gold)] mb-2 border-2 border-[var(--umber)]/30 rounded-lg py-2 px-4 inline-block" suppressHydrationWarning>{stats.totalBooks}</div>
               <div className="text-[1.8rem] text-academia-muted">Total Volumes</div>
             </div>
-            <div className="bg-academia-card p-6 rounded-xl border border-academia text-center hover:border-academia-green/50 transition-all duration-300">
-              <div className="text-[2rem] font-signature text-academia-orange mb-2 border-2 border-academia-orange/30 rounded-lg py-2 px-4 inline-block">{isClient ? stats.fiveStarBooks : 0}</div>
+            <div className="bg-academia-card p-6 rounded-xl border border-academia text-center hover:border-[var(--umber)]/50 transition-all duration-300">
+              <div className="text-[2rem] font-signature text-[var(--gold)] mb-2 border-2 border-[var(--umber)]/30 rounded-lg py-2 px-4 inline-block" suppressHydrationWarning>{stats.fiveStarBooks}</div>
               <div className="text-[1.8rem] text-academia-muted">Masterpieces</div>
             </div>
-            <div className="bg-academia-card p-6 rounded-xl border border-academia text-center hover:border-academia-green/50 transition-all duration-300">
-              <div className="text-[2rem] font-signature text-academia-orange mb-2 border-2 border-academia-orange/30 rounded-lg py-2 px-4 inline-block">{isClient ? stats.readBooks : 0}</div>
+            <div className="bg-academia-card p-6 rounded-xl border border-academia text-center hover:border-[var(--umber)]/50 transition-all duration-300">
+              <div className="text-[2rem] font-signature text-[var(--gold)] mb-2 border-2 border-[var(--umber)]/30 rounded-lg py-2 px-4 inline-block" suppressHydrationWarning>{stats.readBooks}</div>
               <div className="text-[1.8rem] text-academia-muted">Completed</div>
             </div>
-            <div className="bg-academia-card p-6 rounded-xl border border-academia text-center hover:border-academia-green/50 transition-all duration-300">
-              <div className="text-[2rem] font-signature text-academia-orange mb-2 border-2 border-academia-orange/30 rounded-lg py-2 px-4 inline-block">{isClient ? stats.unreadBooks : 0}</div>
+            <div className="bg-academia-card p-6 rounded-xl border border-academia text-center hover:border-[var(--umber)]/50 transition-all duration-300">
+              <div className="text-[2rem] font-signature text-[var(--gold)] mb-2 border-2 border-[var(--umber)]/30 rounded-lg py-2 px-4 inline-block" suppressHydrationWarning>{stats.unreadBooks}</div>
               <div className="text-[1.8rem] text-academia-muted">Unread</div>
             </div>
           </div>
         </div>
 
         {/* Search Bar */}
-        {books.length > 0 && (
+        {hasBooks && (
           <div className="mb-6">
             <div className="relative max-w-md mx-auto">
               <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -193,14 +183,14 @@ export default function Home() {
                   filter === 'five-star'
                     ? 'bg-academia-green/20 text-academia-sage-green border border-academia-green/50'
                     : 'bg-academia-card text-academia-muted hover:text-academia-light hover:bg-academia-card/80 border border-academia'
-                } ${!isClient || books.length === 0 ? 'opacity-0 pointer-events-none' : ''}`}
+                } ${!hasBooks ? 'opacity-0 pointer-events-none' : ''}`}
               >
                 <Star size={20} />
-                Masterpieces ({isClient ? stats.fiveStarBooks : 0})
+                <span suppressHydrationWarning>Masterpieces ({stats.fiveStarBooks})</span>
               </button>
             </div>
 
-            <div className={`flex items-center gap-3 ${!isClient || books.length === 0 ? 'opacity-0 pointer-events-none' : ''}`}>
+            <div className={`flex items-center gap-3 ${!hasBooks ? 'opacity-0 pointer-events-none' : ''}`}>
               <Filter size={18} className="text-academia-sage-green" />
               <select
                 value={filter}
@@ -222,11 +212,11 @@ export default function Home() {
         {/* Books Section */}
         <div className="mb-6">
           <div className="flex items-center justify-between mb-6">
-            <h2 className="text-[2.5rem] text-academia-light">
+            <h2 className="text-[2.5rem] text-academia-light" suppressHydrationWarning>
               {searchQuery ? `Search Results for "${searchQuery}"` :
                filter === 'all' ? 'All Volumes' : 
                filter === 'five-star' ? 'Masterpieces' :
-               filter.charAt(0).toUpperCase() + filter.slice(1)} ({isClient ? filteredBooks.length : 0})
+               filter.charAt(0).toUpperCase() + filter.slice(1)} ({filteredBooks.length})
             </h2>
             {searchQuery ? (
               <button
@@ -247,7 +237,7 @@ export default function Home() {
             )}
           </div>
 
-          {!isClient ? (
+          {isLoading ? (
             <div className="text-center py-16 bg-academia-card rounded-2xl border border-academia">
               <div className="p-4 rounded-full bg-academia-sage-green/20 border border-academia-sage-green/30 w-fit mx-auto mb-6">
                 <BookOpen size={72} className="text-academia-sage-green" />
@@ -296,7 +286,6 @@ export default function Home() {
           ) : (
             <div className="space-y-8">
               {(() => {
-                // Group books by author
                 const groupedBooks = filteredBooks.reduce((groups, book) => {
                   const author = book.authors[0] || 'Unknown Author';
                   if (!groups[author]) {

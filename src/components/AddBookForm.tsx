@@ -128,7 +128,7 @@ export default function AddBookForm({ onAddBook, onCancel }: AddBookFormProps) {
           <button
             type="button"
             onClick={() => handleInputChange('rating', 0)}
-            className="ml-3 text-academia-muted hover:text-academia-light text-[1.8rem]"
+            className="ml-3 text-academia-muted hover:text-academia-light text-[1.2rem]"
           >
             Clear
           </button>
@@ -153,7 +153,7 @@ export default function AddBookForm({ onAddBook, onCancel }: AddBookFormProps) {
         <form onSubmit={handleSubmit} className="p-8 space-y-8">
           {/* Title */}
           <div>
-            <label htmlFor="title" className="block text-[1.8rem] font-semibold text-academia-light mb-3">
+            <label htmlFor="title" className="block text-[1.2rem] font-semibold text-academia-light mb-3">
               Title *
             </label>
             <input
@@ -166,12 +166,12 @@ export default function AddBookForm({ onAddBook, onCancel }: AddBookFormProps) {
               }`}
               placeholder="Enter the title of your literary treasure"
             />
-            {errors.title && <p className="text-red-400 text-[1.8rem] mt-2">{errors.title}</p>}
+            {errors.title && <p className="text-red-400 text-[1.2rem] mt-2">{errors.title}</p>}
           </div>
 
           {/* Authors */}
           <div>
-            <label htmlFor="authors" className="block text-[1.8rem] font-semibold text-academia-light mb-3">
+            <label htmlFor="authors" className="block text-[1.2rem] font-semibold text-academia-light mb-3">
               Authors *
             </label>
             <input
@@ -184,13 +184,13 @@ export default function AddBookForm({ onAddBook, onCancel }: AddBookFormProps) {
               }`}
               placeholder="Enter authors (comma-separated)"
             />
-            {errors.authors && <p className="text-red-400 text-[1.8rem] mt-2">{errors.authors}</p>}
+            {errors.authors && <p className="text-red-400 text-[1.2rem] mt-2">{errors.authors}</p>}
           </div>
 
           {/* Book Cover */}
           <div className="space-y-4">
             <div>
-              <label htmlFor="manualImageUrl" className="block text-[1.8rem] font-semibold text-academia-light mb-3">
+              <label htmlFor="manualImageUrl" className="block text-[1.2rem] font-semibold text-academia-light mb-3">
                 Book Cover URL (Optional)
               </label>
               <input
@@ -201,7 +201,7 @@ export default function AddBookForm({ onAddBook, onCancel }: AddBookFormProps) {
                 className="w-full px-4 py-3 border border-academia rounded-xl focus:outline-none focus:ring-2 focus:ring-academia-green/50 text-academia-light bg-academia-dark"
                 placeholder="Paste image URL from Amazon or Goodreads"
               />
-              <p className="text-[1.8rem] text-academia-muted mt-2">
+              <p className="text-[1.2rem] text-academia-muted mt-2">
                 💡 Right-click on a book cover → &quot;Copy Image Address&quot;
               </p>
             </div>
@@ -209,7 +209,7 @@ export default function AddBookForm({ onAddBook, onCancel }: AddBookFormProps) {
             {/* Cover Preview */}
             {bookCover && (
               <div className="mt-3">
-                <p className="text-academia-green text-[1.8rem] mb-2">Cover preview:</p>
+                <p className="text-academia-green text-[1.2rem] mb-2">Cover preview:</p>
                 <div className="relative w-32 h-44 border-2 border-academia-green/50 rounded-lg overflow-hidden">
                   <Image 
                     src={bookCover} 
@@ -225,7 +225,7 @@ export default function AddBookForm({ onAddBook, onCancel }: AddBookFormProps) {
 
           {/* Genre */}
           <div>
-            <label htmlFor="genre" className="block text-[1.8rem] font-semibold text-academia-light mb-3">
+            <label htmlFor="genre" className="block text-[1.2rem] font-semibold text-academia-light mb-3">
               Genre *
             </label>
             <select
@@ -244,7 +244,7 @@ export default function AddBookForm({ onAddBook, onCancel }: AddBookFormProps) {
           {/* Status and Format */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <label htmlFor="status" className="block text-[1.8rem] font-semibold text-academia-light mb-3">
+              <label htmlFor="status" className="block text-[1.2rem] font-semibold text-academia-light mb-3">
                 Status
               </label>
               <select
@@ -259,7 +259,7 @@ export default function AddBookForm({ onAddBook, onCancel }: AddBookFormProps) {
             </div>
 
             <div>
-              <label htmlFor="format" className="block text-[1.8rem] font-semibold text-academia-light mb-3">
+              <label htmlFor="format" className="block text-[1.2rem] font-semibold text-academia-light mb-3">
                 Format
               </label>
               <select
@@ -277,11 +277,11 @@ export default function AddBookForm({ onAddBook, onCancel }: AddBookFormProps) {
 
           {/* Rating */}
           <div>
-            <label className="block text-[1.8rem] font-semibold text-academia-light mb-3">
+            <label className="block text-[1.2rem] font-semibold text-academia-light mb-3">
               Rating {formData.status === 'read' && '*'}
             </label>
             {renderStars()}
-            {errors.rating && <p className="text-red-400 text-[1.8rem] mt-2">{errors.rating}</p>}
+            {errors.rating && <p className="text-red-400 text-[1.2rem] mt-2">{errors.rating}</p>}
           </div>
 
 
@@ -292,7 +292,7 @@ export default function AddBookForm({ onAddBook, onCancel }: AddBookFormProps) {
             </h3>
             
             <div>
-              <label htmlFor="description" className="block text-[1.8rem] font-semibold text-academia-light mb-3">
+              <label htmlFor="description" className="block text-[1.2rem] font-semibold text-academia-light mb-3">
                 Description
               </label>
               <textarea

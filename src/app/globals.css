@@ -1,6 +1,5 @@
 @import "tailwindcss";
 
-/* Brilliant Signature 3 – add font file to public/fonts/ (see README there) */
 @font-face {
   font-family: "Brilliant Signature 3";
   src:
@@ -27,22 +26,29 @@
 }
 
 :root {
-  /* Dark Academia - The Black Aesthetic palette */
-  --background: #0b0d11;
-  --foreground: #829ea2;
-  --card-bg: #0b0d11;
-  --card-border: #222a2f;
-  --accent-green: #3b1c26;   /* burgundy - primary buttons, stars */
-  --accent-dark-green: #222a2f;
-  --accent-forest-green: #222a2f;
-  --accent-sage-green: #829ea2;  /* light text / links */
-  --accent-orange: #3b1c26;  /* burgundy - stats, rating */
-  --accent-brown: #3b1c26;
-  --accent-warm-grey: #445257;
-  --text-muted: #445257;
-  --text-accent: #829ea2;
-  
-  /* Font aliases — NOT referencing Next.js font vars here (they live on <body>) */
+  /* Dark Academia – Warm Brown Palette */
+  --ink: #100603;
+  --brume: #594B42;
+  --umber: #7E6856;
+  --mahogany: #29180E;
+  --tobacco: #1B0F07;
+  --cream: #D4C5B2;
+  --gold: #B8A088;
+
+  --background: var(--ink);
+  --foreground: var(--cream);
+  --card-bg: var(--tobacco);
+  --card-border: var(--brume);
+  --accent-green: var(--mahogany);
+  --accent-dark-green: var(--mahogany);
+  --accent-forest-green: var(--brume);
+  --accent-sage-green: var(--cream);
+  --accent-orange: var(--umber);
+  --accent-brown: var(--mahogany);
+  --accent-warm-grey: var(--brume);
+  --text-muted: var(--brume);
+  --text-accent: var(--umber);
+
   --font-heading: inherit;
   --font-body: inherit;
   --font-accent: inherit;
@@ -65,8 +71,8 @@
 }
 
 body {
-  background: #0b0d11;
-  color: #829ea2;
+  background: var(--ink);
+  color: var(--cream);
   font-family: var(--font-explora), cursive;
   line-height: 1.6;
 }
@@ -77,16 +83,16 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: #0b0d11;
+  background: var(--ink);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #222a2f;
+  background: var(--brume);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #445257;
+  background: var(--umber);
 }
 
 /* Typography Classes */
@@ -112,119 +118,269 @@ body {
 
 /* Custom focus styles */
 .focus-green:focus {
-  outline: 2px solid #829ea2;
+  outline: 2px solid var(--umber);
   outline-offset: 2px;
 }
 
-/* Dark Academia - The Black Aesthetic */
+/* Dark Academia - Warm Brown utility classes */
 .bg-academia-dark {
-  background-color: #0b0d11;
+  background-color: var(--ink);
 }
 
 .bg-academia-card {
-  background-color: #0b0d11;
+  background-color: var(--tobacco);
 }
 
 .bg-academia-green {
-  background-color: #3b1c26;
+  background-color: var(--mahogany);
 }
 
 .bg-academia-dark-green {
-  background-color: #222a2f;
+  background-color: var(--mahogany);
 }
 
 .bg-academia-forest-green {
-  background-color: #222a2f;
+  background-color: var(--brume);
 }
 
 .bg-academia-dark-red {
-  background-color: #3b1c26;
+  background-color: var(--mahogany);
 }
 
 .bg-academia-orange {
-  background-color: #3b1c26;
+  background-color: var(--umber);
 }
 
 .bg-academia-brown {
-  background-color: #3b1c26;
+  background-color: var(--mahogany);
 }
 
 .bg-academia-bronze {
-  background-color: #3b1c26;
+  background-color: var(--umber);
 }
 
 .bg-academia-warm-grey {
-  background-color: #445257;
+  background-color: var(--brume);
 }
 
 .text-academia-light {
-  color: #829ea2;
+  color: var(--cream);
 }
 
 .text-academia-muted {
-  color: #445257;
+  color: var(--brume);
 }
 
 .text-academia-blood-red {
-  color: #3b1c26;
+  color: var(--umber);
 }
 
 .text-academia-dark-blue {
-  color: #445257;
+  color: var(--brume);
 }
 
 .text-academia-orange {
-  color: #829ea2;
+  color: var(--umber);
 }
 
 .text-academia-brown {
-  color: #3b1c26;
+  color: var(--mahogany);
 }
 
 .text-academia-green {
-  color: #829ea2;
+  color: var(--umber);
 }
 
 .text-academia-dark-green {
-  color: #222a2f;
+  color: var(--mahogany);
 }
 
 .text-academia-forest-green {
-  color: #222a2f;
+  color: var(--brume);
 }
 
 .text-academia-sage-green {
-  color: #829ea2;
+  color: var(--cream);
 }
 
 .text-academia-warm-grey {
-  color: #445257;
+  color: var(--brume);
 }
 
 .border-academia {
-  border-color: #222a2f;
+  border-color: var(--brume);
 }
 
 .border-academia-green {
-  border-color: #445257;
+  border-color: var(--brume);
 }
 
 .border-academia-dark-green {
-  border-color: #222a2f;
+  border-color: var(--mahogany);
 }
 
 .border-academia-forest-green {
-  border-color: #222a2f;
+  border-color: var(--brume);
 }
 
 .border-academia-orange {
-  border-color: #3b1c26;
+  border-color: var(--umber);
 }
 
 .border-academia-brown {
-  border-color: #3b1c26;
+  border-color: var(--mahogany);
 }
 
 .border-academia-blood-red {
-  border-color: #3b1c26;
+  border-color: var(--umber);
+}
+
+/* Hero Section */
+.hero-section {
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url('/images/hero-books.png') center/cover no-repeat;
+  opacity: 0.25;
+  z-index: 0;
+}
+
+.hero-section::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    color-mix(in srgb, var(--ink) 60%, transparent) 50%,
+    var(--ink) 100%
+  );
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+/* Ornate card frame */
+.ornate-card {
+  position: relative;
+  border: 1px solid var(--brume);
+}
+
+.ornate-card::before,
+.ornate-card::after,
+.ornate-card .corner-bl::before,
+.ornate-card .corner-br::before {
+  content: '';
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  z-index: 2;
+}
+
+.ornate-card::before {
+  top: 4px;
+  left: 4px;
+  border-top: 2px solid var(--umber);
+  border-left: 2px solid var(--umber);
+  border-top-left-radius: 6px;
+}
+
+.ornate-card::after {
+  top: 4px;
+  right: 4px;
+  border-top: 2px solid var(--umber);
+  border-right: 2px solid var(--umber);
+  border-top-right-radius: 6px;
+}
+
+.ornate-card .corner-bl::before {
+  bottom: 4px;
+  left: 4px;
+  border-bottom: 2px solid var(--umber);
+  border-left: 2px solid var(--umber);
+  border-bottom-left-radius: 6px;
+}
+
+.ornate-card .corner-br::before {
+  bottom: 4px;
+  right: 4px;
+  border-bottom: 2px solid var(--umber);
+  border-right: 2px solid var(--umber);
+  border-bottom-right-radius: 6px;
+}
+
+/* Swirl decorations for corners */
+.ornate-card .corner-tl,
+.ornate-card .corner-tr,
+.ornate-card .corner-bl,
+.ornate-card .corner-br {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.ornate-card .corner-tl {
+  top: -1px;
+  left: -1px;
+}
+
+.ornate-card .corner-tr {
+  top: -1px;
+  right: -1px;
+}
+
+.ornate-card .corner-bl {
+  bottom: -1px;
+  left: -1px;
+}
+
+.ornate-card .corner-br {
+  bottom: -1px;
+  right: -1px;
+}
+
+.ornate-card .corner-tl svg,
+.ornate-card .corner-tr svg,
+.ornate-card .corner-bl svg,
+.ornate-card .corner-br svg {
+  width: 100%;
+  height: 100%;
+  color: var(--umber);
+}
+
+.ornate-card .corner-tr svg {
+  transform: scaleX(-1);
+}
+
+.ornate-card .corner-bl svg {
+  transform: scaleY(-1);
+}
+
+.ornate-card .corner-br svg {
+  transform: scale(-1, -1);
+}
+
+.ornate-card:hover {
+  border-color: var(--umber);
+  box-shadow: 0 0 20px color-mix(in srgb, var(--umber) 15%, transparent);
+}
+
+/* Inner ornate frame line */
+.ornate-inner {
+  position: absolute;
+  inset: 6px;
+  border: 1px solid color-mix(in srgb, var(--brume) 40%, transparent);
+  border-radius: 2px;
+  pointer-events: none;
+  z-index: 1;
 }
