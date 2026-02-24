@@ -14,6 +14,7 @@ model Book {
   id              String   @id @default(cuid())
   title           String
   authors         String[]
+  isbn            String?
   genre           String   // Dark Romance, Romance, Fantasy
   description     String?  @db.Text
   publishedDate   String?
