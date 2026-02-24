@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { Book, BookGenre, BookStatus, BookFormat } from '@/types/book';
-import { Plus, X, Star } from 'lucide-react';
+import { Plus, X, Star, Circle } from 'lucide-react';
 import Image from 'next/image';
 
 interface AddBookFormProps {
@@ -95,28 +95,32 @@ export default function AddBookForm({ onAddBook, onCancel }: AddBookFormProps) {
     onAddBook(bookData);
   };
 
-  /** Half-star rating values: 0.5, 1, 1.5, ..., 5 */
-  const HALF_STAR_VALUES = [0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5] as const;
+  /** Rating scale: 1 (star), 1.5 (dot), 2 (star), 2.5 (dot), ... 5 (star) */
+  const RATING_VALUES = [1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5] as const;
 
   const renderStars = () => {
     return (
       <div className="flex items-center gap-0.5">
-        {HALF_STAR_VALUES.map((value, index) => {
+        {RATING_VALUES.map((value) => {
           const isFilled = formData.rating >= value;
-          const isEndOfFullStar = (index + 1) % 2 === 0;
+          const isWhole = value % 1 === 0;
           return (
             <button
               key={value}
               type="button"
               onClick={() => handleInputChange('rating', value)}
-              className={`transition-all duration-300 ${
+              className={`transition-all duration-300 flex items-center ${
                 isFilled
                   ? 'text-academia-sage-green scale-110'
                   : 'text-academia-muted hover:text-academia-sage-green hover:scale-105'
-              } ${isEndOfFullStar ? 'mr-0.5' : ''}`}
+              }`}
               title={`${value} stars`}
             >
-              <Star size={20} fill={isFilled ? 'currentColor' : 'none'} />
+              {isWhole ? (
+                <Star size={20} fill={isFilled ? 'currentColor' : 'none'} />
+              ) : (
+                <Circle size={10} fill={isFilled ? 'currentColor' : 'none'} stroke="currentColor" strokeWidth={1.5} />
+              )}
             </button>
           );
         })}

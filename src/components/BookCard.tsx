@@ -1,7 +1,7 @@
 'use client';
 
 import { Book } from '@/types/book';
-import { ExternalLink, Star, Edit } from 'lucide-react';
+import { ExternalLink, Star, Circle, Edit } from 'lucide-react';
 import Image from 'next/image';
 
 interface BookCardProps {
@@ -77,20 +77,19 @@ export default function BookCard({ book, onEdit }: BookCardProps) {
           </span>
         </div>
 
-        {/* Rating (half-star: 10 segments, filled by rating) */}
+        {/* Rating: star (whole) / circle (0.5) — 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5 */}
         {book.rating && book.rating > 0 && (
           <div className="flex items-center gap-0.5 mb-2">
-            {[...Array(10)].map((_, i) => {
-              const halfStarValue = (i + 1) * 0.5;
-              const isFilled = book.rating! >= halfStarValue;
-              return (
-                <Star
-                  key={i}
-                  size={10}
-                  className={`transition-colors duration-300 ${
-                    isFilled ? 'text-academia-orange fill-current' : 'text-academia-muted'
-                  }`}
-                />
+            {([1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5] as const).map((value) => {
+              const isFilled = book.rating! >= value;
+              const isWhole = value % 1 === 0;
+              const iconClass = `transition-colors duration-300 ${
+                isFilled ? 'text-academia-orange fill-current' : 'text-academia-muted'
+              }`;
+              return isWhole ? (
+                <Star key={value} size={10} className={iconClass} />
+              ) : (
+                <Circle key={value} size={6} className={iconClass} stroke="currentColor" strokeWidth={1.5} />
               );
             })}
             <span className="ml-1 text-[10px] font-heading font-semibold text-academia-light">
