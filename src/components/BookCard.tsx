@@ -87,13 +87,19 @@ export default function BookCard({ book, onEdit }: BookCardProps) {
         
         {/* Genre and Status */}
         <div className="flex flex-wrap items-center gap-1.5 mb-3">
-          <span className="px-2 py-0.5 bg-[var(--mahogany)] text-[var(--umber)] text-[1.2rem] rounded-full border border-[var(--umber)]/30">
+          <span className="px-2 py-0.5 bg-[var(--mahogany)] text-[var(--cream)] text-[1.2rem] rounded-full border border-[var(--umber)]/30">
             {book.genre}
           </span>
           <span className={`px-2 py-0.5 text-[1.2rem] rounded-full border ${
-            book.status === 'read' ? 'bg-[var(--umber)]/20 text-[var(--umber)] border-[var(--umber)]/30' :
-            'bg-[var(--brume)]/20 text-[var(--brume)] border-[var(--brume)]/30'
-          }`}>
+            book.status === 'read' ? 'text-[var(--cream)] border-[var(--forest-green)]' :
+            book.status === 'DNF' ? 'text-[var(--cream)] border-[var(--dark-red)]' :
+            'bg-[var(--brume)]/20 text-[var(--cream)] border-[var(--brume)]/30'
+          }`}
+          style={
+            book.status === 'read' ? { backgroundColor: 'var(--forest-green)' } :
+            book.status === 'DNF' ? { backgroundColor: 'var(--dark-red)' } :
+            undefined
+          }>
             {book.status.charAt(0).toUpperCase() + book.status.slice(1)}
           </span>
           <span className="px-2 py-0.5 bg-[var(--mahogany)] text-academia-sage-green text-[1.2rem] rounded-full border border-[var(--umber)]/30">
@@ -146,7 +152,7 @@ export default function BookCard({ book, onEdit }: BookCardProps) {
               {book.categories.slice(0, 2).map((category, index) => (
                 <span
                   key={index}
-                  className="px-2 py-0.5 bg-[var(--umber)]/20 text-[var(--umber)] text-[1.2rem] rounded-full border border-[var(--umber)]/30"
+                  className="px-2 py-0.5 bg-[var(--umber)]/20 text-[var(--cream)] text-[1.2rem] rounded-full border border-[var(--umber)]/30"
                 >
                   {category}
                 </span>

@@ -42,7 +42,7 @@ export default function Home() {
   const [showAddForm, setShowAddForm] = useState(false);
   const [showEditForm, setShowEditForm] = useState(false);
   const [editingBook, setEditingBook] = useState<Book | null>(null);
-  const [filter, setFilter] = useState<'all' | 'five-star' | BookGenre | 'unread' | 'read'>('all');
+  const [filter, setFilter] = useState<'all' | 'five-star' | BookGenre | 'unread' | 'read' | 'DNF'>('all');
   const [searchQuery, setSearchQuery] = useState('');
   const [error, setError] = useState<string | null>(null);
   const [showBackToTop, setShowBackToTop] = useState(false);
@@ -96,6 +96,7 @@ export default function Home() {
         return filteredBooks.filter(book => book.genre === filter);
       case 'unread':
       case 'read':
+      case 'DNF':
         return filteredBooks.filter(book => book.status === filter);
       default:
         return filteredBooks;
@@ -238,12 +239,13 @@ export default function Home() {
               <Filter size={18} className="text-academia-sage-green" />
               <select
                 value={filter}
-                onChange={(e) => setFilter(e.target.value as 'all' | 'five-star' | BookGenre | 'unread' | 'read')}
+                onChange={(e) => setFilter(e.target.value as 'all' | 'five-star' | BookGenre | 'unread' | 'read' | 'DNF')}
                 className="px-4 py-2 bg-academia-card border border-academia rounded-xl text-[1.4rem] text-academia-light focus:outline-none focus:border-academia-green focus:ring-2 focus:ring-academia-green/20"
               >
                 <option value="all">All Books</option>
                 <option value="unread">Unread</option>
                 <option value="read">Read</option>
+                <option value="DNF">DNF</option>
                 <option value="Romance">Romance</option>
                 <option value="Dark Romance">Dark Romance</option>
                 <option value="Fantasy">Fantasy</option>

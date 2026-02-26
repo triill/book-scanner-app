@@ -31,6 +31,7 @@
   --brume: #594B42;
   --umber: #7E6856;
   --mahogany: #29180E;
+  --dark-red: #4A1111;
   --tobacco: #1B0F07;
   --cream: #D4C5B2;
   --gold: #B8A088;
@@ -40,6 +41,7 @@
   --card-bg: var(--tobacco);
   --card-border: var(--brume);
   --forest-green: #0f1712;
+  --dark-red: #5b1e1e;
   --accent-green: var(--mahogany);
   --accent-dark-green: var(--mahogany);
   --accent-forest-green: var(--brume);
@@ -47,8 +49,8 @@
   --accent-orange: var(--umber);
   --accent-brown: var(--mahogany);
   --accent-warm-grey: var(--brume);
-  --text-muted: var(--brume);
-  --text-accent: var(--umber);
+  --text-muted: var(--cream);
+  --text-accent: var(--cream);
 
   --font-heading: inherit;
   --font-body: inherit;
@@ -169,35 +171,35 @@ body {
 }
 
 .text-academia-muted {
-  color: var(--brume);
+  color: var(--cream);
 }
 
 .text-academia-blood-red {
-  color: var(--umber);
+  color: var(--cream);
 }
 
 .text-academia-dark-blue {
-  color: var(--brume);
+  color: var(--cream);
 }
 
 .text-academia-orange {
-  color: var(--umber);
+  color: var(--cream);
 }
 
 .text-academia-brown {
-  color: var(--mahogany);
+  color: var(--cream);
 }
 
 .text-academia-green {
-  color: var(--umber);
+  color: var(--cream);
 }
 
 .text-academia-dark-green {
-  color: var(--mahogany);
+  color: var(--cream);
 }
 
 .text-academia-forest-green {
-  color: var(--brume);
+  color: var(--cream);
 }
 
 .text-academia-sage-green {
@@ -205,7 +207,7 @@ body {
 }
 
 .text-academia-warm-grey {
-  color: var(--brume);
+  color: var(--cream);
 }
 
 .border-academia {
@@ -246,7 +248,7 @@ body {
   content: '';
   position: absolute;
   inset: 0;
-  background: url('/images/hero-books.png') center/cover no-repeat;
+  background: url('/hero-books.png') center/cover no-repeat;
   opacity: 0.25;
   z-index: 0;
 }

@@ -26,8 +26,13 @@ export default function AddBookForm({ onAddBook, onCancel }: AddBookFormProps) {
   const [manualImageUrl, setManualImageUrl] = useState('');
 
   const handleInputChange = (field: string, value: string | number) => {
-    setFormData(prev => ({ ...prev, [field]: value }));
-    // Clear error when user starts typing
+    setFormData(prev => {
+      const updated = { ...prev, [field]: value };
+      if (field === 'status' && value === 'DNF') {
+        updated.rating = 0;
+      }
+      return updated;
+    });
     if (errors[field]) {
       setErrors(prev => ({ ...prev, [field]: '' }));
     }
@@ -250,6 +255,7 @@ export default function AddBookForm({ onAddBook, onCancel }: AddBookFormProps) {
               >
                 <option value="unread">Unread</option>
                 <option value="read">Read</option>
+                <option value="DNF">DNF</option>
               </select>
             </div>
 
@@ -271,13 +277,15 @@ export default function AddBookForm({ onAddBook, onCancel }: AddBookFormProps) {
           </div>
 
           {/* Rating */}
-          <div>
-            <label className="block text-[1.8rem] font-semibold text-academia-light mb-3">
-              Rating {formData.status === 'read' && '*'}
-            </label>
-            {renderStars()}
-            {errors.rating && <p className="text-red-400 text-[1.8rem] mt-2">{errors.rating}</p>}
-          </div>
+          {formData.status !== 'DNF' && (
+            <div>
+              <label className="block text-[1.8rem] font-semibold text-academia-light mb-3">
+                Rating {formData.status === 'read' && '*'}
+              </label>
+              {renderStars()}
+              {errors.rating && <p className="text-red-400 text-[1.8rem] mt-2">{errors.rating}</p>}
+            </div>
+          )}
 
 
           {/* Optional Fields */}

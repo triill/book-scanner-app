@@ -29,7 +29,13 @@ export default function EditBookForm({ book, onUpdateBook, onCancel }: EditBookF
   const [submitError, setSubmitError] = useState<string | null>(null);
 
   const handleInputChange = (field: string, value: string | number) => {
-    setFormData(prev => ({ ...prev, [field]: value }));
+    setFormData(prev => {
+      const updated = { ...prev, [field]: value };
+      if (field === 'status' && value === 'DNF') {
+        updated.rating = 0;
+      }
+      return updated;
+    });
     if (errors[field]) {
       setErrors(prev => ({ ...prev, [field]: '' }));
     }
@@ -277,6 +283,7 @@ export default function EditBookForm({ book, onUpdateBook, onCancel }: EditBookF
               >
                 <option value="unread">Unread</option>
                 <option value="read">Read</option>
+                <option value="DNF">DNF</option>
               </select>
             </div>
 
@@ -298,13 +305,15 @@ export default function EditBookForm({ book, onUpdateBook, onCancel }: EditBookF
           </div>
 
           {/* Rating */}
-          <div>
-            <label className="block text-[1.2rem] font-semibold text-academia-light mb-3">
-              Rating {formData.status === 'read' && '*'}
-            </label>
-            {renderStars()}
-            {errors.rating && <p className="text-red-400 text-[1.2rem] mt-2">{errors.rating}</p>}
-          </div>
+          {formData.status !== 'DNF' && (
+            <div>
+              <label className="block text-[1.2rem] font-semibold text-academia-light mb-3">
+                Rating {formData.status === 'read' && '*'}
+              </label>
+              {renderStars()}
+              {errors.rating && <p className="text-red-400 text-[1.2rem] mt-2">{errors.rating}</p>}
+            </div>
+          )}
 
           {/* Description */}
           <div>
